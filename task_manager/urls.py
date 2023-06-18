@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from task_manager import view
 
+
 urlpatterns = [
     path('', view.HomePageViews.as_view(), name='home_page'),
     path('admin/', admin.site.urls),
