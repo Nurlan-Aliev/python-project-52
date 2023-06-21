@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-18 21:22+0400\n"
+"POT-Creation-Date: 2023-06-20 21:04+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,13 +20,18 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: task_manager/templates/base.html:6 task_manager/templates/header.html:6
+msgid "Task Manager"
+msgstr "Менеджер задач"
+
 #: task_manager/templates/header.html:11
+#: task_manager/templates/users/users.html:4
 msgid "Users"
 msgstr "Пользователи"
 
 #: task_manager/templates/header.html:13
 msgid "Sing Up"
-msgstr "Зарегестрироваться"
+msgstr "Регистрация"
 
 #: task_manager/templates/header.html:14
 msgid "Sing In"
@@ -36,6 +41,22 @@ msgstr "Войти"
 msgid "Hello world"
 msgstr "Привет, мир!"
 
-#: task_manager/view.py:10
-msgid "Task Manager"
-msgstr "Менеджер задач"
+#: task_manager/templates/users/users.html:8
+msgid "User name"
+msgstr "Имя пользователя"
+
+#: task_manager/templates/users/users.html:9
+msgid "Full name"
+msgstr "Полное имя"
+
+#: task_manager/templates/users/users.html:10
+msgid "Create at"
+msgstr "Дата создания"
+
+#: task_manager/templates/users/users.html:19
+msgid "Update"
+msgstr "Изменить"
+
+#: task_manager/templates/users/users.html:20
+msgid "Delete"
+msgstr "Удалить"

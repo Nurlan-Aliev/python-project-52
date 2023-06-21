@@ -3,15 +3,15 @@
 <header class="flex-shrink-0">
   <nav class="navbar navbar-expand-md navbar-light bg-light px-3">
     <a class="navbar-brand" href="/">
-      {{ Task_Manager }}
+      {% trans "Task Manager" %}
     </a>
     <div id="navbarNav " class="w-100">
       <div class="navbar-nav w-100">
         <div class="nav-item d-flex justify-content-sm-between w-100">
-          <a class="nav-link " href="/urls">{% trans "Users" %}</a>
+          <a class="nav-link " href="{% url 'user_list' %}">{% trans "Users" %}</a>
           <div class="d-flex">
-            <a class="nav-link " href="/urls">{% trans "Sing Up" %}</a>
-            <a class="nav-link " href="/urls">{% trans "Sing In" %}</a>
+            <a class="nav-link " href="{% url 'create_user' %}">{% trans "Sing Up" %}</a>
+            <a class="nav-link " href="{% url 'login' %}">{% trans "Sing In" %}</a>
           </div>
         </div>
       </div>

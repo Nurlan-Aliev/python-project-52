@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block main %}
+
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger container wrapper" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">×</button>
+        {{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+
+<div class="container wrapper flex-grow-1">
+    <h1>{% trans "Sing Up" %}</h1>
+    <form action="{% url 'create_user' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+                    {{ form }}
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="{% trans 'Register' %}">
+    </form>
+</div>
+{% endblock %}

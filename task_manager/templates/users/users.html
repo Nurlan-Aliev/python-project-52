@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block main %}
+<div class="container wrapper flex-grow-1">
+    <h1>{% trans "Users" %}</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>{% trans "User name" %}</th>
+            <th>{% trans "Full name" %}</th>
+            <th>{% trans "Create at" %}</th>
+            <th></th>
+        </tr>
+        {% for user in users %}
+        <tr>
+
+            <td>{{ user.id }}</td>
+            <td>{{ user }}</td>
+            <td>{{ user.first_name}} {{ user.last_name}}</td>
+            <td>{{ user.date_joined }}</td>
+            <td><a>{% trans "Update" %}</a><br>
+                <a>{% trans "Delete" %}</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
