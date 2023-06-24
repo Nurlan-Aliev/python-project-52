@@ -18,7 +18,7 @@
             <td>{{ user }}</td>
             <td>{{ user.first_name}} {{ user.last_name}}</td>
             <td>{{ user.date_joined }}</td>
-            <td><a>{% trans "Update" %}</a><br>
+            <td><a href="{{ user.id }}/update/">{% trans "Update" %}</a><br>
                 <a>{% trans "Delete" %}</a></td>
 
         </tr>

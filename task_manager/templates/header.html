@@ -10,8 +10,15 @@
         <div class="nav-item d-flex justify-content-sm-between w-100">
           <a class="nav-link " href="{% url 'user_list' %}">{% trans "Users" %}</a>
           <div class="d-flex">
-            <a class="nav-link " href="{% url 'create_user' %}">{% trans "Sing Up" %}</a>
-            <a class="nav-link " href="{% url 'login' %}">{% trans "Sing In" %}</a>
+            {% if request.user.is_authenticated %}
+              <form action="/logout/" method="post">
+                {% csrf_token %}
+                <input class="btn nav-link" type="submit" value="{% trans 'Log Out' %}">
+              </form>
+            {% else %}
+              <a class="nav-link " href="{% url 'create_user' %}">{% trans "Sing Up" %}</a>
+              <a class="nav-link " href="{% url 'login' %}">{% trans "Log In" %}</a>
+            {% endif %}
           </div>
         </div>
       </div>

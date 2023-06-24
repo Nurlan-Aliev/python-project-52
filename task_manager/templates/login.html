@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block main %}
+
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-succses container wrapper" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">×</button>
+        {{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+
+<div class="container wrapper flex-grow-1">
+    {% block h1 %}<h1>{% trans "Sing in" %}</h1>{% endblock %}
+
+
+    {% block form %}<form action="{% url 'login' %}"  method="post">{% endblock %}
+
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+                    {{ form }}
+                </td>
+            </tr>
+        </table>
+
+        {% block submit %}
+        <input type="submit" value="{% trans 'Sing in' %}">
+        {% endblock %}
+    </form>
+</div>
+{% endblock %}
