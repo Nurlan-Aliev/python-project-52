@@ -29,10 +29,12 @@ class CreateUser(CreateView):
         form = UsersForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, _('User create successfully'), extra_tags="alert-success")
+            messages.success(request, _('User create successfully'),
+                             extra_tags="alert-success")
             return redirect(reverse('login'))
 
-        messages.error(request, _('Incorrect Form'), extra_tags="alert-danger")
+        messages.error(request, _('Incorrect Form'),
+                       extra_tags="alert-danger")
         return redirect(reverse('create_user'))
 
 
@@ -43,41 +45,51 @@ class UpdateUser(View):
             user = request.user
             user_id = user.id
             form = UsersForm(instance=user)
-            return render(request, 'users/update.html', {'form': form, 'user_id': user_id})
+            return render(request, 'users/update.html',
+                          {'form': form, 'user_id': user_id})
 
-        messages.error(request, _('You are not authorized! Please sign in.'), extra_tags="alert-danger")
+        messages.error(request, _('You are not authorized! Please sign in.'),
+                       extra_tags="alert-danger")
         return redirect(reverse('login'))
 
     def post(self, request, *args, **kwargs):
         user = request.user
         form = UsersForm(request.POST, instance=user)
 
+        if not request.user.is_authenticated:
+            messages.error(request, _('You are not authorized! Please sign in.'),
+                           extra_tags="alert-danger")
+            return redirect(reverse('login'))
+
         if form.is_valid():
             form.save()
-            messages.success(request, _('User changed successfully'), extra_tags="alert-success")
+            messages.success(request, _('User changed successfully'),
+                             extra_tags="alert-success")
             return redirect(reverse('user_list'))
 
-        messages.error(request, _('You are not authorized! Please sign in.'), extra_tags="alert-danger")
-        return redirect(reverse('login'))
-
         user_id = user.id
-        messages.error(request, _('Incorrect Form'), extra_tags="alert-danger")
-        return render(request, 'users/update.html', {'form': form, 'user_id': user_id})
+        messages.error(request, _('Incorrect Form'),
+                       extra_tags="alert-danger")
+        return render(request, 'users/update.html',
+                      {'form': form, 'user_id': user_id})
 
 
 class DeleteUser(DeleteView):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             user = request.user
-            return render(request, 'users/delete.html', {'user': user, 'user_id': user.id})
+            return render(request,
+                          'users/delete.html', {
+                              'user': user, 'user_id': user.id})
 
-        messages.error(request, _('You are not authorized! Please sign in.'), extra_tags="alert-danger")
+        messages.error(request, _('You are not authorized! Please sign in.'),
+                       extra_tags="alert-danger")
         return redirect(reverse('login'))
 
     def post(self, request, *args, **kwargs):
-        messages.success(request, _('User deleted successfully'), extra_tags="alert-success")
-        model = User
-        success_url = reverse('user_list')
+        messages.success(request, _('User deleted successfully'),
+                         extra_tags="alert-success")
+
         user = request.user
         if user:
             user.delete()

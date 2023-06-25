@@ -26,15 +26,19 @@ class LoginUser(LoginView):
     authentication_form = LoginForm
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'form': self.authentication_form})
+        return render(request, self.template_name,
+                      {'form': self.authentication_form})
 
     def post(self, request, *args, **kwargs):
         super().post(request, *args, **kwargs)
         if request.user.is_authenticated:
-            messages.success(request, _('You have successfully logged in'), extra_tags="alert-success")
+            messages.success(request, _('You have successfully logged in'),
+                             extra_tags="alert-success")
             return redirect(reverse('home_page'))
-        messages.error(request, _('Incorrect Form'), extra_tags="alert-danger")
-        return render(request, self.template_name, {'form': self.authentication_form})
+        messages.error(request, _('Incorrect Form'),
+                       extra_tags="alert-danger")
+        return render(request, self.template_name,
+                      {'form': self.authentication_form})
 
 
 class Logout(LogoutView):
@@ -42,5 +46,6 @@ class Logout(LogoutView):
 
     def dispatch(self, request, *args, **kwargs):
         super().dispatch(request, *args, **kwargs)
-        messages.info(request, _("You have successfully logged out"), extra_tags="alert-info")
+        messages.info(request, _("You have successfully logged out"),
+                      extra_tags="alert-info")
         return redirect(self.next_page)
