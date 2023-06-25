@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block main %}
-        <h1 >{% trans "Hello" %} {{ form }}</h1>
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} container wrapper" role="alert">
+        {{ message }}
+        <button type="button" class="close alert-success" data-dismiss="alert" aria-label="close">×</button>
+    </div>
+
+
+    {% endfor %}
+{% endif %}
+        <h1>{% trans "Hello" %} {{ form }}</h1>
 {% endblock %}
