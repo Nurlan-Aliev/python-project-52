@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block main %}
+
 {% if messages %}
     {% for message in messages %}
-    <div class="alert {{ message.tags }} container wrapper" role="alert">
+    <div class="alert {{ message.tags }} container wrapper d-flex justify-content-between" role="alert">
         {{ message }}
-        <button type="button" class="close alert-success" data-dismiss="alert" aria-label="close">×</button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-
-
     {% endfor %}
 {% endif %}
+
         <h1>{% trans "Hello" %} {{ form }}</h1>
 {% endblock %}

@@ -4,6 +4,7 @@ from django.urls import reverse
 
 
 class UserCRUDTest(TestCase):
+
     def test_create_user(self):
 
         user_data = {'first_name': 'Jon', 'last_name': 'Snow',

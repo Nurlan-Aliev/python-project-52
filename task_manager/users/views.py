@@ -41,16 +41,21 @@ class CreateUser(CreateView):
 class UpdateUser(View):
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            user = request.user
-            user_id = user.id
-            form = UsersForm(instance=user)
-            return render(request, 'users/update.html',
-                          {'form': form, 'user_id': user_id})
+        user = request.user
+        if not user.is_authenticated:
+            messages.error(request, _('You are not authorized! Please sign in.'),
+                           extra_tags="alert-danger")
+            return redirect(reverse('login'))
 
-        messages.error(request, _('You are not authorized! Please sign in.'),
-                       extra_tags="alert-danger")
-        return redirect(reverse('login'))
+        if user.id != kwargs.get('id'):
+            messages.error(request, _('You do not have rights to change another user.'),
+                           extra_tags="alert-danger")
+            return redirect(reverse('user_list'))
+
+        user_id = user.id
+        form = UsersForm(instance=user)
+        return render(request, 'users/update.html',
+                      {'form': form, 'user_id': user_id})
 
     def post(self, request, *args, **kwargs):
         user = request.user
@@ -76,15 +81,24 @@ class UpdateUser(View):
 
 class DeleteUser(DeleteView):
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            user = request.user
-            return render(request,
-                          'users/delete.html', {
-                              'user': user, 'user_id': user.id})
+        user = request.user
 
-        messages.error(request, _('You are not authorized! Please sign in.'),
-                       extra_tags="alert-danger")
-        return redirect(reverse('login'))
+        if not user.is_authenticated:
+            messages.error(request, _('You are not authorized! Please sign in.'),
+                           extra_tags="alert-danger")
+            return redirect(reverse('login'))
+
+        if user.id != kwargs.get('id'):
+            messages.error(request, _(
+                'You do not have rights to change another user.'),
+                           extra_tags="alert-danger")
+            return redirect(reverse('user_list'))
+
+        return render(request, 'users/delete.html', {
+                          'user': user, 'user_id': user.id})
+
+
+
 
     def post(self, request, *args, **kwargs):
         messages.success(request, _('User deleted successfully'),
