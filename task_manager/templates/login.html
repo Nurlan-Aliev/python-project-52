@@ -3,16 +3,6 @@
 {% block main %}
 
 
-{% if messages %}
-    {% for message in messages %}
-    <div class="alert {{ message.tags }} container wrapper d-flex justify-content-between" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %}
-{% endif %}
-
-
 <div class="container wrapper flex-grow-1">
     {% block h1 %}<h1>{% trans "Sing in" %}</h1>{% endblock %}
 

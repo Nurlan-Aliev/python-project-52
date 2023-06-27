@@ -8,7 +8,18 @@
 </head>
   <body class="d-flex flex-column min-vh-100">
 
+
     {% include 'header.html' %}
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} container wrapper d-flex justify-content-between" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+
     <main>
         {% block main %}{% endblock %}
     </main>
