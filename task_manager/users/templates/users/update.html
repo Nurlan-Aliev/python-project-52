@@ -5,7 +5,7 @@
 {% block h1 %}<h1>{% trans "Update" %}</h1>{% endblock %}
 
 
-{% block form %}<form action="{% url 'update_user' id=user_id %}"  method="post">{% endblock %}
+{% block form %}<form action="{% url 'update_user' pk=user_id %}"  method="post">{% endblock %}
 
     {% block submit %}
     <input type="submit" value="{% trans 'Update' %}">

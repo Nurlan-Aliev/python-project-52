@@ -44,7 +44,7 @@ class UpdateUser(CheckAuthentication, View):
     def get(self, request, *args, **kwargs):
         user = request.user
 
-        if user.id != kwargs.get('id'):
+        if user.id != kwargs.get('pk'):
             messages.error(request, _('You do not have rights to change another user.'),
                            extra_tags="alert-danger")
             return redirect(reverse('user_list'))
@@ -76,7 +76,7 @@ class DeleteUser(CheckAuthentication, DeleteView):
     def get(self, request, *args, **kwargs):
         user = request.user
 
-        if user.id != kwargs.get('id'):
+        if user.id != kwargs.get('pk'):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
                            extra_tags="alert-danger")
@@ -86,10 +86,10 @@ class DeleteUser(CheckAuthentication, DeleteView):
                           'user': user, 'user_id': user.id})
 
     def post(self, request, *args, **kwargs):
-        messages.success(request, _('User deleted successfully'),
-                         extra_tags="alert-success")
 
         user = request.user
         if user:
+            messages.success(request, _('User deleted successfully'),
+                             extra_tags="alert-success")
             user.delete()
         return redirect(reverse('user_list'))
