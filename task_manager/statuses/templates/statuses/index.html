@@ -23,8 +23,8 @@
             <td>{{ status.id }}</td>
             <td>{{ status }}</td>
             <td>{{ status.timestamp }}</td>
-            <td><a href="{{ status.id }}/update/">{% trans "Update" %}</a><br>
-                <a href="{{ status.id }}/delete/">{% trans "Delete" %}</a></td>
+            <td><a href="{% url 'update_statuses' id=status.id %}">{% trans 'Update' %}</a><br>
+                <a href="{% url 'delete_statuses' id=status.id %}">{% trans "Delete" %}</a></td>
 
         </tr>
         {% endfor %}

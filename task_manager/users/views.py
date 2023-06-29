@@ -8,6 +8,7 @@ from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.utils.translation import gettext as _
 from task_manager.users.forms import UsersForm
+from task_manager.utils import CheckAuthentication
 
 
 class Users(View):
@@ -38,14 +39,10 @@ class CreateUser(CreateView):
         return redirect(reverse('create_user'))
 
 
-class UpdateUser(View):
+class UpdateUser(CheckAuthentication, View):
 
     def get(self, request, *args, **kwargs):
         user = request.user
-        if not user.is_authenticated:
-            messages.error(request, _('You are not authorized! Please sign in.'),
-                           extra_tags="alert-danger")
-            return redirect(reverse('login'))
 
         if user.id != kwargs.get('id'):
             messages.error(request, _('You do not have rights to change another user.'),
@@ -61,11 +58,6 @@ class UpdateUser(View):
         user = request.user
         form = UsersForm(request.POST, instance=user)
 
-        if not request.user.is_authenticated:
-            messages.error(request, _('You are not authorized! Please sign in.'),
-                           extra_tags="alert-danger")
-            return redirect(reverse('login'))
-
         if form.is_valid():
             form.save()
             messages.success(request, _('User changed successfully'),
@@ -79,14 +71,10 @@ class UpdateUser(View):
                       {'form': form, 'user_id': user_id})
 
 
-class DeleteUser(DeleteView):
+class DeleteUser(CheckAuthentication, DeleteView):
+
     def get(self, request, *args, **kwargs):
         user = request.user
-
-        if not user.is_authenticated:
-            messages.error(request, _('You are not authorized! Please sign in.'),
-                           extra_tags="alert-danger")
-            return redirect(reverse('login'))
 
         if user.id != kwargs.get('id'):
             messages.error(request, _(
@@ -96,9 +84,6 @@ class DeleteUser(DeleteView):
 
         return render(request, 'users/delete.html', {
                           'user': user, 'user_id': user.id})
-
-
-
 
     def post(self, request, *args, **kwargs):
         messages.success(request, _('User deleted successfully'),

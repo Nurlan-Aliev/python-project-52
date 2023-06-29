@@ -8,4 +8,3 @@ urlpatterns = [
     path('<int:id>/update/', views.UpdateStatusesView.as_view(), name='update_statuses'),
     path('<int:id>/delete/', views.DeleteStatusesView.as_view(), name='delete_statuses'),
 ]
-
