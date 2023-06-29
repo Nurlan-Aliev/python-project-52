@@ -2,7 +2,7 @@
 {% load i18n %}
 
 
-{% block h1 %}<h1>{% trans "Update status" %}</h1>{% endblock %}
+{% block h1 %}<h1>{% trans "Update" %} {% trans "status" %}</h1>{% endblock %}
 
 
 {% block form %}<form action="{% url 'update_statuses' pk=status_id %}"  method="post">{% endblock %}
