@@ -35,6 +35,7 @@ class UserCRUDTest(TestCase):
     def test_delete_user(self):
         user = User.objects.create_user(username='aegon_targaryen', password='referred_to_as_6')
         self.client.login(username='aegon_targaryen', password='referred_to_as_6')
-        response = self.client.post(f'/users/{user.id}/delete/')
+
+        response = self.client.post(reverse('delete_user', args=[user.id]))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(User.objects.filter(username='testuser').exists())

@@ -25,10 +25,7 @@ class CreateStatusesView(CheckAuthentication, View):
     def post(self, request, *args, **kwargs):
         form = StatusForm(request.POST)
         if form.is_valid():
-            status = form.save(commit=False)
-            user = request.user
-            status.user_id = user
-            status.save()
+            form.save()
             messages.success(request, _('Status create successfully'),
                              extra_tags="alert-success")
             return redirect(reverse('statuses'))
