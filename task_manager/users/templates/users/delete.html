@@ -7,10 +7,10 @@
     <h1 class="my-4">
         {% trans "Delete user" %}
     </h1>
-    <p>{% trans "Are you sure you want to delete" %} {{ user.first_name }} {{ user.last_name }}?</p>
-    <form action="{% url 'delete_user' pk=user_id %}" method="post">
+    <p>{% trans "Are you sure you want to delete" %} {% block name %}{{ user.first_name }} {{ user.last_name }}{% endblock %}?</p>
+    {% block form %} <form action="{% url 'delete_user' pk=user_id %}" method="post">{% endblock %}
         {% csrf_token %}
-        <input class="btn btn-danger" type="submit" value="{% trans 'Yes' %}, {% trans 'delete' %}">
+       <input class="btn btn-danger" type="submit" value="{% trans 'Yes' %}, {% trans 'delete' %}">
     </form>
 
 </div>

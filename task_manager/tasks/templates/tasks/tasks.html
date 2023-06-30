@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block main %}
+
+<div class="container wrapper flex-grow-1">
+    <h1>{% trans "Tasks" %}</h1>
+
+
+    <a class="d-flex justify-content-end text-black text-decoration-none" href="{% url 'create_statuses' %}">{% trans "Create status" %}</a>
+
+
+    <br>
+
+</div>
+
+{% endblock %}
