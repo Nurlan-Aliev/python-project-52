@@ -10,43 +10,50 @@ from task_manager.utils import CheckAuthentication
 
 
 class StatusesView(CheckAuthentication, View):
+    template_name = 'statuses/index.html'
 
     def get(self, request, *args, **kwargs):
         statuses = StatusModel.objects.all()
-        return render(request, 'statuses/index.html', {'statuses': statuses})
+        return render(request, self.template_name, {'statuses': statuses})
 
 
 class CreateStatusesView(CheckAuthentication, View):
+    template_name = 'statuses/create.html'
 
     def get(self, request, *args, **kwargs):
         form = StatusForm
-        return render(request, 'statuses/create.html', {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
         form = StatusForm(request.POST)
+
         if form.is_valid():
             form.save()
             messages.success(request, _('Status create successfully'),
                              extra_tags="alert-success")
             return redirect(reverse('statuses'))
+
         messages.success(request, _('Incorrect Form'),
                          extra_tags="alert-danger")
-        return render(request, 'statuses/create.html', {'form': form})
+        return render(request, self.template_name, {'form': form})
 
 
 class UpdateStatusesView(CheckAuthentication, View):
+    template_name = 'statuses/update.html'
 
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')
         status = StatusModel.objects.get(id=status_id)
         form = StatusForm(instance=status)
-        return render(request, 'statuses/update.html',
+
+        return render(request, self.template_name,
                       {'form': form, 'status_id': status_id})
 
     def post(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')
         status = StatusModel.objects.get(id=status_id)
         form = StatusForm(request.POST, instance=status)
+
         if form.is_valid():
             form.save()
             messages.success(request, _('Status update successfully'),
@@ -55,15 +62,17 @@ class UpdateStatusesView(CheckAuthentication, View):
 
         messages.success(request, _('Incorrect Form'),
                          extra_tags="alert-danger")
-        return render(request, 'statuses/update.html', {'form': form})
+        return render(request, self.template_name, {'form': form})
 
 
 class DeleteStatusesView(CheckAuthentication, DeleteView):
+    template_name = 'statuses/delete.html'
+
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')
         status = StatusModel.objects.get(id=status_id)
 
-        return render(request, 'statuses/delete.html', {
+        return render(request, self.template_name, {
             'status': status})
 
     def post(self, request, *args, **kwargs):

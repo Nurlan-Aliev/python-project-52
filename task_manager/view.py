@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import View
 from task_manager.users.forms import LoginForm, AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
@@ -8,6 +8,7 @@ from django.utils.translation import gettext as _
 
 
 class HomePageViews(View):
+    template_name = 'index.html'
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -16,13 +17,13 @@ class HomePageViews(View):
         else:
             form = 'World'
 
-        return render(request, 'index.html', {'form': form})
+        return render(request, self.template_name, {'form': form})
 
 
 class LoginUser(LoginView):
     form_class = AuthenticationForm
     template_name = 'login.html'
-    redirect_field_name = '/'
+    redirect_field_name = reverse_lazy('home_page')
     authentication_form = LoginForm
 
     def get(self, request, *args, **kwargs):
@@ -31,10 +32,12 @@ class LoginUser(LoginView):
 
     def post(self, request, *args, **kwargs):
         super().post(request, *args, **kwargs)
+
         if request.user.is_authenticated:
             messages.success(request, _('You have successfully logged in'),
                              extra_tags="alert-success")
-            return redirect(reverse('home_page'))
+            return redirect(self.redirect_field_name)
+
         messages.error(request, _('Incorrect Form'),
                        extra_tags="alert-danger")
         return render(request, self.template_name,
