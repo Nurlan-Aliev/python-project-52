@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.views import View
-from task_manager.users.forms import LoginForm, AuthenticationForm
+from task_manager.users.forms import LoginForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
 from django.utils.translation import gettext as _
@@ -21,7 +21,6 @@ class HomePageViews(View):
 
 
 class LoginUser(LoginView):
-    form_class = AuthenticationForm
     template_name = 'login.html'
     redirect_field_name = reverse_lazy('home_page')
     authentication_form = LoginForm

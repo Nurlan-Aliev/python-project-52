@@ -7,6 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 class UsersForm(UserCreationForm):
     first_name = forms.CharField(max_length=50, label='Name')
     last_name = forms.CharField(max_length=50)
+    password1 = forms.PasswordInput()
 
     class Meta:
         model = User
@@ -18,7 +19,7 @@ class UsersForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
         widget=forms.TextInput(
-            attrs={'class': 'form-control'}))
+            attrs={'class': 'form-control is-valid'}))
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={'class': 'form-control'}))
