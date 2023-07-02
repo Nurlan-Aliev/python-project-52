@@ -5,7 +5,7 @@
 {% block h1 %}<h1>{% trans "Create status" %}</h1>{% endblock %}
 
 
-{% block form %}<form action="{% url 'create_statuses' %}"  method="post">{% endblock %}
+{% block form %}<form action="{% url 'create_status' %}"  method="post">{% endblock %}
 
     {% block submit %}
     {% if form.errors %}

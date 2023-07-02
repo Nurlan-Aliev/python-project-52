@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DeleteView
 from task_manager.statuses.models import StatusModel
@@ -31,16 +31,11 @@ class CreateStatusesView(CheckAuthentication, View):
             form.save()
             messages.success(request, _('Status create successfully'),
                              extra_tags="alert-success")
-            return redirect(reverse('statuses'))
+            return redirect(reverse_lazy('status_list'))
 
         messages.success(request, _('Incorrect Form'),
                          extra_tags="alert-danger")
-<<<<<<< HEAD
         return render(request, self.template_name, {'form': form})
-=======
-
-        return render(request, 'statuses/create.html', {'form': form})
->>>>>>> statuses
 
 
 class UpdateStatusesView(CheckAuthentication, View):
@@ -63,7 +58,7 @@ class UpdateStatusesView(CheckAuthentication, View):
             form.save()
             messages.success(request, _('Status update successfully'),
                              extra_tags="alert-success")
-            return redirect(reverse('statuses'))
+            return redirect(reverse_lazy('status_list'))
 
         messages.success(request, _('Incorrect Form'),
                          extra_tags="alert-danger")
@@ -86,4 +81,4 @@ class DeleteStatusesView(CheckAuthentication, DeleteView):
         status.delete()
         messages.success(request, _('Status deleted successfully'),
                          extra_tags="alert-success")
-        return redirect(reverse('statuses'))
+        return redirect(reverse_lazy('status_list'))

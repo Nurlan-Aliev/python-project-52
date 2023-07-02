@@ -4,6 +4,6 @@
 
 {% block name %}{{ status }}{% endblock %}
 
-{% block form %}<form action="{% url 'delete_statuses' pk=status.id %}" method="post">{% endblock %}
+{% block form %}<form action="{% url 'delete_status' pk=status.id %}" method="post">{% endblock %}
 
 </form>

@@ -29,7 +29,7 @@ class StatusesCRUDTest(TestCase):
             'name': 'Active'
         }
         self.client = create_login_user()
-        response = self.client.post(reverse('create_statuses'), data=status_data)
+        response = self.client.post(reverse('create_status'), data=status_data)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(StatusModel.objects.filter(name='Active').exists())
 
@@ -39,7 +39,7 @@ class StatusesCRUDTest(TestCase):
             'name': 'Super_active'
         }
 
-        url = reverse('update_statuses', args=[status.id])
+        url = reverse('update_status', args=[status.id])
 
         self.client = create_login_user()
         response = self.client.post(url, data=update_data)
@@ -50,6 +50,6 @@ class StatusesCRUDTest(TestCase):
     def test_delete_statuses(self):
         self.client = create_login_user()
         status = StatusModel.objects.create(name='Active')
-        response = self.client.post(reverse('delete_statuses', args=[status.id]))
+        response = self.client.post(reverse('delete_status', args=[status.id]))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(User.objects.filter(username='testuser').exists())
