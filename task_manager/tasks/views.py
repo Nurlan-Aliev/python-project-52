@@ -62,21 +62,25 @@ class UpdateTaskView(CheckAuthentication, View):
 
 
 class DeleteTaskView(CheckAuthentication, DeleteView):
-    template_name = 'tasks/delete.html'
-
-    def get(self, request, *args, **kwargs):
-        task_id = kwargs.get('pk')
-        task = TasksModel.objects.get(id=task_id)
-
-        return render(request, self.template_name,
-                      {'task': task})
+    # template_name = 'tasks/delete.html'
+    #
+    # def get(self, request, *args, **kwargs):
+    #     task_id = kwargs.get('pk')
+    #     task = TasksModel.objects.get(id=task_id)
+    #
+    #     return render(request, self.template_name,
+    #                   {'task': task})
 
     def post(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
         task = TasksModel.objects.get(id=task_id)
-        task.delete()
-        messages.success(request, _('Status deleted successfully'),
+        if request.user.id == task.author_id:
+            task.delete()
+            messages.success(request, _('Status deleted successfully'),
                          extra_tags="alert-success")
+            return redirect(reverse_lazy('task_list'))
+        messages.success(request, _('Only owner can remove the task'),
+                         extra_tags="alert-danger")
         return redirect(reverse_lazy('task_list'))
 
 
