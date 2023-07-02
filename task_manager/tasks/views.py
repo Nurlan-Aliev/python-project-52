@@ -8,6 +8,8 @@ from task_manager.tasks.models import TasksModel
 from django.utils.translation import gettext as _
 from django.views.generic import DeleteView
 
+
+
 class TaskListView(CheckAuthentication, View):
     template_name = 'tasks/tasks.html'
 
@@ -62,14 +64,15 @@ class UpdateTaskView(CheckAuthentication, View):
 
 
 class DeleteTaskView(CheckAuthentication, DeleteView):
-    # template_name = 'tasks/delete.html'
-    #
-    # def get(self, request, *args, **kwargs):
-    #     task_id = kwargs.get('pk')
-    #     task = TasksModel.objects.get(id=task_id)
-    #
-    #     return render(request, self.template_name,
-    #                   {'task': task})
+    template_name = 'tasks/delete.html'
+
+    def get(self, request, *args, **kwargs):
+        task_id = kwargs.get('pk')
+        task = TasksModel.objects.get(id=task_id)
+        print()
+
+        return render(request, self.template_name,
+                      {'task': task})
 
     def post(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
