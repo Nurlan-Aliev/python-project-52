@@ -21,12 +21,12 @@
         <tr>
 
             <td>{{ task.id }}</td>
-            <td>{{ task }}</td>
-            <td>{{ task.status_id.name }}</td>
+            <td><a href="{% url 'view_task' pk=task.id %}" >{{ task }}</a></td>
+            <td>{{ task.status_id }}</td>
             <td>{{ task.author_id }}</td>
             <td>{{ task.executor_id }}</td>
-            <td>{{ user.date_joined }}</td>
-            <td><a href="{% url 'update_statuses' pk=task.id %}">{% trans "Update" %}</a><br>
+            <td>{{ task.timestamp }}</td>
+            <td><a href="{% url 'update_task' pk=task.id %}">{% trans "Update" %}</a><br>
                 <a href="{% url 'delete_task' pk=task.id %}">{% trans "Delete" %}</a></td>
 
         </tr>

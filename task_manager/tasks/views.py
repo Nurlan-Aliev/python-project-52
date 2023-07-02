@@ -8,7 +8,6 @@ from task_manager.tasks.models import TasksModel
 from django.utils.translation import gettext as _
 
 
-
 class TaskListView(CheckAuthentication, View):
     template_name = 'tasks/tasks.html'
 
@@ -48,4 +47,9 @@ class DeleteTaskView(CheckAuthentication, View):
 
 
 class TaskView(CheckAuthentication, View):
-    pass
+    template_name = 'tasks/task_view.html'
+
+    def get(self, request, *args, **kwargs):
+        task_id = kwargs.get('pk')
+        task = TasksModel.objects.get(id=task_id)
+        return render(request, self.template_name, {'task': task})
