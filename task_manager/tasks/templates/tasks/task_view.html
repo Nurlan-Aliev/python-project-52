@@ -11,7 +11,9 @@
         </div>
         <div class="card-body bg-light">
             <p>
-               {{ task.description }}
+                {% if task.description %}
+                    {{ task.description }}
+                {%  endif %}
             </p>
             <hr>
 
@@ -34,7 +36,9 @@
                     </div>
 
                     <div class="col">
-                        {{ task.executor_id }}
+                        {% if task.executor_id %}
+                            {{ task.executor_id }}
+                        {%  endif %}
                     </div>
                 </div>
 

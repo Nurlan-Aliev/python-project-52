@@ -11,9 +11,9 @@ class TasksForm(forms.ModelForm):
     name = forms.CharField(max_length=100, label=_('Name'),
                            widget=forms.TextInput(
                                attrs={'placeholder': _('Name'), 'id': 'id_name'}))
-    description = forms.TextInput()
+    description = forms.CharField(widget=forms.Textarea, required=False, label=_('description'))
     status_id = forms.ModelChoiceField(queryset=StatusModel.objects.all(), label=_('Status'))
-    executor_id = forms.ModelChoiceField(queryset=User.objects.all(), label=_('Executor'))
+    executor_id = forms.ModelChoiceField(queryset=User.objects.all(), label=_('Executor'), required=False)
 
     class Meta:
         model = TasksModel

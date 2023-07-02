@@ -10,7 +10,7 @@ class TasksModel(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     status_id = models.ForeignKey(StatusModel, on_delete=models.PROTECT)
     author_id = models.ForeignKey(User, on_delete=models.PROTECT, related_name='author')
-    executor_id = models.ForeignKey(User, on_delete=models.PROTECT, related_name='executor')
+    executor_id = models.ForeignKey(User, on_delete=models.PROTECT, related_name='executor', null=True )
 
     def __str__(self):
         return self.name

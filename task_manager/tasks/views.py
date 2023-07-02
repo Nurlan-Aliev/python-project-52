@@ -6,7 +6,7 @@ from task_manager.utils import CheckAuthentication
 from task_manager.tasks.forms import TasksForm
 from task_manager.tasks.models import TasksModel
 from django.utils.translation import gettext as _
-
+from django.views.generic import DeleteView
 
 class TaskListView(CheckAuthentication, View):
     template_name = 'tasks/tasks.html'
@@ -39,11 +39,45 @@ class CreateTaskView(CheckAuthentication, View):
 
 
 class UpdateTaskView(CheckAuthentication, View):
-    pass
+    template_name = 'tasks/update.html'
+
+    def get(self, request, *args, **kwargs):
+        task_id = kwargs.get('pk')
+        task = TasksModel.objects.get(id=task_id)
+        form = TasksForm(instance=task)
+        return render(request, self.template_name, {'form': form, 'task_id': task_id})
+
+    def post(self, request, *args, **kwargs):
+        task_id = kwargs.get('pk')
+        task = TasksModel.objects.get(id=task_id)
+        form = TasksForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _('Status update successfully'),
+                             extra_tags="alert-success")
+            return redirect(reverse_lazy('task_list'))
+        messages.success(request, _('Incorrect Form'),
+                         extra_tags="alert-danger")
+        return render(request, self.template_name, {'form': form})
 
 
-class DeleteTaskView(CheckAuthentication, View):
-    pass
+class DeleteTaskView(CheckAuthentication, DeleteView):
+    template_name = 'tasks/delete.html'
+
+    def get(self, request, *args, **kwargs):
+        task_id = kwargs.get('pk')
+        task = TasksModel.objects.get(id=task_id)
+
+        return render(request, self.template_name,
+                      {'task': task})
+
+    def post(self, request, *args, **kwargs):
+        task_id = kwargs.get('pk')
+        task = TasksModel.objects.get(id=task_id)
+        task.delete()
+        messages.success(request, _('Status deleted successfully'),
+                         extra_tags="alert-success")
+        return redirect(reverse_lazy('task_list'))
 
 
 class TaskView(CheckAuthentication, View):
