@@ -1,0 +1,18 @@
+{% extends "login.html" %}
+{% load i18n %}
+
+
+{% block h1 %}<h1>{% trans "Create task" %}</h1>{% endblock %}
+
+
+{% block form %}<form action="{% url 'create_task' %}"  method="post">{% endblock %}
+
+    {% block submit %}
+    <br>
+    <input type="submit" value="{% trans 'Create' %}">
+
+
+    {% endblock %}
+</form>
+
+

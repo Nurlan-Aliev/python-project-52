@@ -35,7 +35,12 @@ class CreateStatusesView(CheckAuthentication, View):
 
         messages.success(request, _('Incorrect Form'),
                          extra_tags="alert-danger")
+<<<<<<< HEAD
         return render(request, self.template_name, {'form': form})
+=======
+
+        return render(request, 'statuses/create.html', {'form': form})
+>>>>>>> statuses
 
 
 class UpdateStatusesView(CheckAuthentication, View):

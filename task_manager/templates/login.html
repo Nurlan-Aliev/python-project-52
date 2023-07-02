@@ -17,6 +17,14 @@
                 </td>
             </tr>
         </table>
+    {% if form.errors %}
+    <div>
+        {% for error in form.errors %}
+            <div>{{ error|escape }}
+                {% endfor %}
+            </div>
+    </div>
+    {% endif %}
 
         {% block submit %}
         <input type="submit" value="{% trans 'Sing in' %}">

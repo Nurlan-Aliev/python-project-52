@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block main %}
+
+<div class="container wrapper flex-grow-1">
+    <h1>Task view</h1>
+
+    <div class="card">
+        <div class="card-header bg-secondary text-white">
+            <h2 class="">{{ task }}</h2>
+        </div>
+        <div class="card-body bg-light">
+            <p>
+                {% if task.description %}
+                    {{ task.description }}
+                {%  endif %}
+            </p>
+            <hr>
+
+            <div class="container">
+                <div class="row p-1">
+
+                    <div class="col">
+                        {% trans "Author" %}
+                    </div>
+
+                    <div class="col">
+                        {{ task.author_id }}
+                    </div>
+                </div>
+
+                <div class="row p-1">
+
+                    <div class="col">
+                        {% trans "Executor" %}
+                    </div>
+
+                    <div class="col">
+                        {% if task.executor_id %}
+                            {{ task.executor_id }}
+                        {%  endif %}
+                    </div>
+                </div>
+
+                <div class="row p-1">
+
+                    <div class="col">
+                        {% trans "Status" %}
+                    </div>
+
+                    <div class="col">
+                        {{ task.status_id }}
+                    </div>
+                </div>
+
+                <div class="row p-1">
+
+                    <div class="col">
+                        {% trans "Create at" %}
+                    </div>
+
+                    <div class="col">
+                        {{ task.timestamp }}
+                    </div>
+                </div>
+
+                <div class="row p-1">
+
+                    <div class="col">
+                        <h6>{% trans "Tags" %}</h6>
+                        <ul>
+                            <li><h2>Change This</h2></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <a href="{% url 'update_task' pk=task.id %}">{% trans "Update" %}</a>
+                    <br>
+                    <a href="{% url 'delete_task' pk=task.id %}">{% trans "Delete" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}

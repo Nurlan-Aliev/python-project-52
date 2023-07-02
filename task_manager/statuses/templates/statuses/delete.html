@@ -1,17 +1,9 @@
-{% extends "base.html" %}
+{% extends "users/delete.html" %}
 {% load i18n %}
-{% block main %}
 
 
-<div class="container wrapper flex-grow">
-    <h1 class="my-4">
-        {% trans "Delete user" %}
-    </h1>
-    <p>{% trans "Are you sure you want to delete" %} {{ status }}?</p>
-    <form action="{% url 'delete_statuses' pk=status.id %}" method="post">
-        {% csrf_token %}
-        <input class="btn btn-danger" type="submit" value="{% trans 'Yes' %}, {% trans 'delete' %}">
-    </form>
-</div>
+{% block name %}{{ status }}{% endblock %}
 
-{% endblock %}
+{% block form %}<form action="{% url 'delete_statuses' pk=status.id %}" method="post">{% endblock %}
+
+</form>
