@@ -29,8 +29,10 @@ class CreateStatusesView(CheckAuthentication, View):
             messages.success(request, _('Status create successfully'),
                              extra_tags="alert-success")
             return redirect(reverse('statuses'))
+
         messages.success(request, _('Incorrect Form'),
                          extra_tags="alert-danger")
+
         return render(request, 'statuses/create.html', {'form': form})
 
 
