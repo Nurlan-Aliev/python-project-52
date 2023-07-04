@@ -1,13 +1,46 @@
-{% extends "login.html" %}
+{% extends "base_form.html" %}
 {% load i18n %}
 
 
 {% block h1 %}<h1>{% trans "Sing Up" %}</h1>{% endblock %}
 
 
-{% block form %}<form action="{% url 'create_user' %}"  method="post">{% endblock %}
+{% block form %}<form action="{% url 'create_user' %}"  method="post">
+    {% csrf_token %}
+    <div>
+        <div class="mb=3">
+
+            <label class="form-label">{{ form.first_name.label }}</label>
+            {{ form.first_name }}
+        </div>
+        <br>
+        <div>
+            <label class="form-label">{{ form.last_name.label }}</label>
+            {{ form.last_name }}
+        </div>
+        <br>
+        <div>
+            <label class="form-label">{{ form.username.label }}</label>
+            <div>{{ form.username }}</div>
+            {{ form.username.help_text }}
+        </div>
+        <br>
+        <div>
+            <label class="form-label">{{ form.password1.label }}</label>
+            {{ form.password1 }}
+        </div>
+        <br>
+        <div>
+            <label class="form-label">{{ form.password2.label }}</label>
+             {{ form.password2 }}</div>
+        </div>
+    </div>
+
+
+
+    {% endblock %}
 
     {% block submit %}
-    <input type="submit" value="{% trans 'Register' %}">
+    <input class="btn btn-primary" type="submit" value="{% trans 'Register' %}">
     {% endblock %}
 </form>

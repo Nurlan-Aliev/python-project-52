@@ -1,14 +1,45 @@
-{% extends "login.html" %}
+{% extends "base_form.html" %}
 {% load i18n %}
 
 
 {% block h1 %}<h1>{% trans "Update" %} {% trans "task" %}</h1>{% endblock %}
 
 
-{% block form %}<form action="{% url 'update_task' pk=task_id %}"  method="post">{% endblock %}
+{% block form %}<form action="{% url 'update_task' pk=task_id %}"  method="post">
+    {% csrf_token %}
+    <div>
+        <div>
+
+            <label class="form-label">{{ form.name.label }}</label>
+            {{ form.name }}
+        </div>
+        <br>
+        <div>
+            <label class="form-label">{{ form.description.label }}</label>
+            {{ form.description }}
+        </div>
+        <br>
+        <div>
+            <label class="form-label">{{ form.status.label }}</label>
+            <div>{{ form.status }}
+        </div>
+        <br>
+        <div>
+            <label class="form-label">{{ form.executor.label }}</label>
+            {{ form.executor }}
+        </div>
+        <br>
+        <div>
+            <label class="form-label">{{ form.labels.label }}</label>
+            {{ form.labels }}
+        </div>
+    </div>
+
+
+
+    {% endblock %}
 
     {% block submit %}
-    <br>
-    <input type="submit" value="{% trans 'Update' %}">
+    <input class="btn btn-primary" type="submit" value="{% trans 'Update' %}">
     {% endblock %}
 </form>

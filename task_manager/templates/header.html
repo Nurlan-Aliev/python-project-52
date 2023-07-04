@@ -13,7 +13,7 @@
             {% if request.user.is_authenticated %}
             <a class="nav-link " href="{% url 'status_list' %}">{% trans "Statuses" %}</a>
             <a class="nav-link " href="{% url 'task_list' %}">{% trans "Tasks" %}</a>
-            <a class="nav-link " href="/">{% trans "Tags" %}</a>
+            <a class="nav-link " href="{% url 'label_list' %}">{% trans "labels" %}</a>
             {% endif %}
           </div>
 

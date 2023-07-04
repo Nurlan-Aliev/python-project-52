@@ -2,10 +2,10 @@
 {% load i18n %}
 
 
-{% block h1 %}<h1>{% trans "Create" %} {% trans "status" %}</h1>{% endblock %}
+{% block h1 %}<h1>{% trans "Update" %} {% trans "label" %}</h1>{% endblock %}
 
 
-{% block form %}<form action="{% url 'create_status' %}"  method="post">
+{% block form %}<form action="{% url 'update_label' pk=label_id %}"  method="post">
     {% csrf_token %}
     <div>
         <div>
@@ -19,6 +19,6 @@
     {% endblock %}
 
     {% block submit %}
-    <input class="btn btn-primary" type="submit" value="{% trans 'Create' %}">
+    <input class="btn btn-primary" type="submit" value="{% trans 'Update' %}">
     {% endblock %}
 </form>

@@ -1,28 +1,29 @@
-{% extends "base.html" %}
+{% extends "base_form.html" %}
 {% load i18n %}
-{% block main %}
 
 
-<div class="container wrapper flex-grow-1">
-    {% block h1 %}<h1>{% trans "Sing in" %}</h1>{% endblock %}
+{% block h1 %}<h1>{% trans "Sing in" %}</h1>{% endblock %}
 
 
-    {% block form %}<form action="{% url 'login' %}"  method="post">{% endblock %}
+{% block form %}<form action="{% url 'login' %}"  method="post">
+    {% csrf_token %}
+    <div>
+        <div>
+            <label class="form-label">{{ form.username.label }}</label>
+            <div>{{ form.username }}</div>
+        </div>
+        <br>
+        <div>
+            <label class="form-label">{{ form.password.label }}</label>
+            <div>{{ form.password }}</div>
+        </div>
+    </div>
 
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>
-                    {{ form }}
-                </td>
-            </tr>
-        </table>
 
 
+    {% endblock %}
 
-        {% block submit %}
-        <input type="submit" value="{% trans 'Sing in' %}">
-        {% endblock %}
-    </form>
-</div>
-{% endblock %}
+    {% block submit %}
+    <input class="btn btn-primary" type="submit" value="{% trans 'login' %}">
+    {% endblock %}
+</form>

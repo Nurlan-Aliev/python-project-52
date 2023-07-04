@@ -78,7 +78,11 @@ class DeleteStatusesView(CheckAuthentication, DeleteView):
     def post(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')
         status = StatusModel.objects.get(id=status_id)
-        status.delete()
-        messages.success(request, _('Status deleted successfully'),
-                         extra_tags="alert-success")
+        if status.status_id.exists():
+            messages.success(request, _("Can't delete status because it used"),
+                             extra_tags="alert-danger")
+        else:
+            status.delete()
+            messages.success(request, _('Status deleted successfully'),
+                             extra_tags="alert-success")
         return redirect(reverse_lazy('status_list'))

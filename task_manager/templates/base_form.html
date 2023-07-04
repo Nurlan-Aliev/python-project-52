@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block main %}
+
+
+<div class="container wrapper flex-grow-1">
+    {% block h1 %}{% endblock %}
+
+
+    {% block form %}
+
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+                    {{ form }}
+                </td>
+            </tr>
+        </table>
+    {% endblock %}
+
+    <br>
+        {% block submit %}
+
+        {% endblock %}
+</div>
+{% endblock %}

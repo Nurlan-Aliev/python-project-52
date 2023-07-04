@@ -1,14 +1,24 @@
-{% extends "login.html" %}
+{% extends "base_form.html" %}
 {% load i18n %}
 
 
 {% block h1 %}<h1>{% trans "Update" %} {% trans "status" %}</h1>{% endblock %}
 
 
-{% block form %}<form action="{% url 'update_status' pk=status_id %}"  method="post">{% endblock %}
+{% block form %}<form action="{% url 'update_status' pk=status_id %}"  method="post">
+    {% csrf_token %}
+    <div>
+        <div>
+            <label class="form-label">{{ form.name.label }}</label>
+            <div>{{ form.name }}</div>
+        </div>
+    </div>
+
+
+
+    {% endblock %}
 
     {% block submit %}
-    <br>
-    <input type="submit" value="{% trans 'Update' %}">
+    <input class="btn btn-primary" type="submit" value="{% trans 'Update' %}">
     {% endblock %}
 </form>

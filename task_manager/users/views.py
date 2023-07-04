@@ -89,9 +89,14 @@ class DeleteUser(CheckAuthentication, DeleteView):
     def post(self, request, *args, **kwargs):
         user = request.user
 
-        if user:
+        if user.author_id.exists() or user.executor_id.exists():
+            messages.success(request, _("Can't delete user because it used"),
+                             extra_tags="alert-danger")
+
+        else:
             messages.success(request, _('User deleted successfully'),
                              extra_tags="alert-success")
 
             user.delete()
+
         return redirect(reverse('user_list'))
