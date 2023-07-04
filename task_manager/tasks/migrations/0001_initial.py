@@ -18,13 +18,30 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TasksModel',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
+
                 ('description', models.TextField()),
+
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
-                ('author_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='author', to=settings.AUTH_USER_MODEL)),
-                ('executor_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='executor', to=settings.AUTH_USER_MODEL)),
-                ('status_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='statuses.statusmodel')),
+
+                ('author_id', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT,
+                    related_name='author',
+                    to=settings.AUTH_USER_MODEL)),
+
+                ('executor_id', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT,
+                    related_name='executor',
+                    to=settings.AUTH_USER_MODEL)),
+
+                ('status_id', models.ForeignKey(
+                    on_delete=django.db.models.deletion.PROTECT,
+                    to='statuses.statusmodel')),
             ],
         ),
     ]

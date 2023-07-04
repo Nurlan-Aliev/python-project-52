@@ -15,8 +15,9 @@ class TasksForm(forms.ModelForm):
                                       'class': 'form-control'}))
 
     description = forms.CharField(required=False, label=_('Description'),
-        widget=forms.Textarea(attrs={'class': 'form-control',
-                                     'placeholder': _('Description')}))
+                                  widget=forms.Textarea(
+                                      attrs={'class': 'form-control',
+                                             'placeholder': _('Description')}))
 
     status = forms.ModelChoiceField(
         queryset=StatusModel.objects.all(), label=_('Status'),
@@ -26,7 +27,7 @@ class TasksForm(forms.ModelForm):
     executor = forms.ModelChoiceField(
         queryset=User.objects.all(), label=_('Executor'), required=False,
         widget=forms.Select(
-            attrs={'class': 'form-select',}))
+            attrs={'class': 'form-select'}))
 
     labels = forms.ModelMultipleChoiceField(
         queryset=LabelModel.objects.all(), label=_('label'),

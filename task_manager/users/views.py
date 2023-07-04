@@ -47,8 +47,9 @@ class UpdateUser(CheckAuthentication, View):
         user = request.user
 
         if user.id != kwargs.get('pk'):
-            messages.error(request, _('You do not have rights to change another user.'),
-                           extra_tags="alert-danger")
+            messages.error(request, _(
+                'You do not have rights to change another user.'),
+                extra_tags="alert-danger")
             return redirect(reverse('user_list'))
 
         form = UsersForm(instance=user)
@@ -80,7 +81,7 @@ class DeleteUser(CheckAuthentication, DeleteView):
         if user.id != kwargs.get('pk'):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
-                           extra_tags="alert-danger")
+                extra_tags="alert-danger")
             return redirect(reverse('user_list'))
 
         return render(request, self.template_name,

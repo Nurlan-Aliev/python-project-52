@@ -7,7 +7,8 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('labels', '0001_initial'),
-        ('tasks', '0004_tasksmodel_label_id_alter_tasksmodel_author_id_and_more'),
+        ('tasks',
+         '0004_tasksmodel_label_id_alter_tasksmodel_author_id_and_more'),
     ]
 
     operations = [

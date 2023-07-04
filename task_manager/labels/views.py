@@ -43,7 +43,8 @@ class UpdateLabel(CheckAuthentication, View):
         label_id = kwargs.get('pk')
         label = LabelModel.objects.get(id=label_id)
         form = LabelForms(instance=label)
-        return render(request, self.template_name, {'form': form, 'label_id': label_id})
+        return render(request, self.template_name,
+                      {'form': form, 'label_id': label_id})
 
     def post(self, request, *args, **kwargs):
         label_id = kwargs.get('pk')
@@ -56,7 +57,8 @@ class UpdateLabel(CheckAuthentication, View):
             return redirect(reverse_lazy('label_list'))
         messages.success(request, _('Incorrect Form'),
                          extra_tags="alert-danger")
-        return render(request, self.template_name, {'form': form, 'label_id': label_id})
+        return render(request, self.template_name,
+                      {'form': form, 'label_id': label_id})
 
 
 class DeleteLabel(CheckAuthentication, DeleteView):

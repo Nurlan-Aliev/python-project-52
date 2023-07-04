@@ -8,14 +8,18 @@ from django.utils.translation import gettext as _
 class UsersForm(UserCreationForm):
     first_name = forms.CharField(max_length=50, label=_('Name'),
                                  widget=forms.TextInput(
-                                     attrs={'class': 'form-control', 'placeholder': _('Name')}))
+                                     attrs={'class': 'form-control',
+                                            'placeholder': _('Name')}))
     last_name = forms.CharField(max_length=50, label=_('Surname'),
                                 widget=forms.TextInput(
-                                    attrs={'class': 'form-control', 'placeholder': _('Surname')}))
+                                    attrs={'class': 'form-control',
+                                           'placeholder': _('Surname')}))
     username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': _('username')}))
+        attrs={'class': 'form-control',
+               'placeholder': _('username')}))
     password1 = forms.CharField(widget=forms.PasswordInput(
-                                    attrs={'class': 'form-control', 'placeholder': _('password')}))
+        attrs={'class': 'form-control',
+               'placeholder': _('password')}))
     password2 = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': _('password')}))
 

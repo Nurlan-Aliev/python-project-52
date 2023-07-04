@@ -7,8 +7,6 @@ from task_manager.tasks.forms import TasksForm
 from task_manager.tasks.models import TasksModel
 from django.utils.translation import gettext as _
 from django.views.generic import DeleteView
-from task_manager.labels.models import LabelModel
-
 
 
 class TaskListView(CheckAuthentication, View):
@@ -48,7 +46,8 @@ class UpdateTaskView(CheckAuthentication, View):
         task_id = kwargs.get('pk')
         task = TasksModel.objects.get(id=task_id)
         form = TasksForm(instance=task)
-        return render(request, self.template_name, {'form': form, 'task_id': task_id})
+        return render(request, self.template_name,
+                      {'form': form, 'task_id': task_id})
 
     def post(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
@@ -81,7 +80,7 @@ class DeleteTaskView(CheckAuthentication, DeleteView):
         if request.user.id == task.author_id:
             task.delete()
             messages.success(request, _('Status deleted successfully'),
-                         extra_tags="alert-success")
+                             extra_tags="alert-success")
             return redirect(reverse_lazy('task_list'))
 
         messages.success(request, _('Only owner can remove the task'),
@@ -97,4 +96,5 @@ class TaskView(CheckAuthentication, View):
         task = TasksModel.objects.get(id=task_id)
         labels = task.labels.all()
         print(labels)
-        return render(request, self.template_name, {'task': task, 'labels': labels})
+        return render(request, self.template_name,
+                      {'task': task, 'labels': labels})
