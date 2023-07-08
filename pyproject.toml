@@ -15,6 +15,7 @@ django-bootstrap4 = "^23.1"
 psycopg2-binary = "^2.9.6"
 flake8 = "^6.0.0"
 pytest = "^7.4.0"
+django-filter = "^23.2"
 
 
 [build-system]

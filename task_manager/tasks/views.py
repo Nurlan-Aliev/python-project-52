@@ -7,14 +7,29 @@ from task_manager.tasks.forms import TasksForm
 from task_manager.tasks.models import TasksModel
 from django.utils.translation import gettext as _
 from django.views.generic import DeleteView
+from task_manager.tasks.forms import FilterForm
 
 
 class TaskListView(CheckAuthentication, View):
     template_name = 'tasks/tasks.html'
 
     def get(self, request, *args, **kwargs):
+        user = request.user
+        status = request.GET.get('status')
+        executor = request.GET.get('executor')
+        labels = request.GET.get('labels')
         tasks = TasksModel.objects.all()
-        return render(request, self.template_name, {'tasks': tasks})
+        filters = FilterForm(request.GET, tasks)
+        if status:
+            tasks = tasks.filter(status=status)
+        if executor:
+            tasks = tasks.filter(executor=executor)
+        if labels:
+            tasks = tasks.filter(labels=labels)
+        if request.GET.get('self_tasks'):
+            tasks = tasks.filter(author=user)
+
+        return render(request, self.template_name, {'tasks': tasks, 'filters': filters})
 
 
 class CreateTaskView(CheckAuthentication, View):
@@ -26,10 +41,11 @@ class CreateTaskView(CheckAuthentication, View):
 
     def post(self, request, *args, **kwargs):
         form = TasksForm(request.POST)
+
         if form.is_valid():
             task = form.save(commit=False)
             user = request.user
-            task.author_id = user
+            task.author = user
             form.save()
             messages.success(request, _('Status create successfully'),
                              extra_tags="alert-success")
@@ -69,7 +85,6 @@ class DeleteTaskView(CheckAuthentication, DeleteView):
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
         task = TasksModel.objects.get(id=task_id)
-        print()
 
         return render(request, self.template_name,
                       {'task': task})
@@ -95,6 +110,5 @@ class TaskView(CheckAuthentication, View):
         task_id = kwargs.get('pk')
         task = TasksModel.objects.get(id=task_id)
         labels = task.labels.all()
-        print(labels)
         return render(request, self.template_name,
                       {'task': task, 'labels': labels})

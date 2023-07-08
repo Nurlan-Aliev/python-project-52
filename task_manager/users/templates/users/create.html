@@ -34,13 +34,10 @@
             <label class="form-label">{{ form.password2.label }}</label>
              {{ form.password2 }}</div>
         </div>
+        <br>
+        <input class="btn btn-primary" type="submit" value="{% trans 'Register' %}">
     </div>
 
 
-
-    {% endblock %}
-
-    {% block submit %}
-    <input class="btn btn-primary" type="submit" value="{% trans 'Register' %}">
     {% endblock %}
 </form>

@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<div class="card">
+     <div class="card-header bg-light text-black">
+        <form method="get">
+            <label class="form-label">{{ filters.form.status.label }}</label>
+            {{ filters.form.status }}<br>
+
+            <label class="form-label">{{ filters.form.executor.label }}</label>
+            {{ filters.form.executor }}<br>
+
+            <label class="form-label">{{ filters.form.labels.label }}</label>
+            {{ filters.form.labels }}<br>
+
+            {{ filters.form.self_tasks }}
+            <label class="form-label">{{ filters.form.self_tasks.label }}</label><br>
+
+
+
+
+
+            <input class="btn btn-primary" type="submit" value="Send"/>
+        </form>
+     </div>
+</div>
