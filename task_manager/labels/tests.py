@@ -40,12 +40,13 @@ class TestLabelCRUD(TestCase):
         self.create_user()
 
         self.client.post(reverse_lazy('create_label'),
-                                    data={'name': 'testing'})
+                         data={'name': 'testing'})
 
         label = LabelModel.objects.get(name='testing')
 
-        response = self.client.post(reverse_lazy('update_label', args=[label.id]),
-                                    data={'name': 'TESTING'})
+        response = self.client.post(
+            reverse_lazy('update_label', args=[label.id]),
+            data={'name': 'TESTING'})
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.headers.get('Location'), '/labels/')
@@ -76,8 +77,7 @@ class TestLabelCRUD(TestCase):
                                  'Summon the Northern Houses to defend'
                                  ' against the Army of the Dead.',
                              'status': status.id,
-                             'labels': label.id,
-                         })
+                             'labels': label.id})
 
         label = LabelModel.objects.get(name='important')
         response = self.client.post(reverse_lazy('delete_label',

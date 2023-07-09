@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse_lazy
 from task_manager.statuses.models import StatusModel
-from django.test import Client
 
 
 class TestStatusesCRUD(TestCase):
@@ -55,7 +54,7 @@ class TestStatusesCRUD(TestCase):
 
         status = StatusModel.objects.get(name='Active')
         response = self.client.post(reverse_lazy('delete_status',
-                                            args=[status.id]))
+                                                 args=[status.id]))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(
             StatusModel.objects.filter(name='Active').exists())

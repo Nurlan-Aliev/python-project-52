@@ -18,8 +18,8 @@ class TasksForm(forms.ModelForm):
     description = forms.CharField(
         required=False, label=_('Description'),
         widget=forms.Textarea(
-        attrs={'class': 'form-control',
-               'placeholder': _('Description')}))
+            attrs={'class': 'form-control',
+                   'placeholder': _('Description')}))
 
     status = forms.ModelChoiceField(
         queryset=StatusModel.objects.all(), label=_('Status'),

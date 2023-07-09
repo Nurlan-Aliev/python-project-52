@@ -29,7 +29,8 @@ class TaskListView(CheckAuthentication, View):
         if request.GET.get('self_tasks'):
             tasks = tasks.filter(author=user)
 
-        return render(request, self.template_name, {'tasks': tasks, 'filters': filters})
+        return render(request, self.template_name,
+                      {'tasks': tasks, 'filters': filters})
 
 
 class CreateTaskView(CheckAuthentication, View):

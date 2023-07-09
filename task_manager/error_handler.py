@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils.translation import gettext as _
 
 
 class ErrorMiddleware:
@@ -9,8 +10,12 @@ class ErrorMiddleware:
         response = self.get_response(request)
 
         if response.status_code > 500:
-            return render(request, 'error.html', {'status': response.status_code, 'description': 'Internet server error'})
+            return render(request, 'error.html',
+                          {'status': response.status_code,
+                           'description': _('Internet server error')})
 
         if response.status_code > 400:
-            return render(request, 'error.html', {'status': response.status_code, 'description': 'Page not Found'})
+            return render(request, 'error.html',
+                          {'status': response.status_code,
+                           'description': _('Page not Found')})
         return response

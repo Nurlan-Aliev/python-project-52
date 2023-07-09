@@ -20,14 +20,14 @@ class TestTasksCRUD(TestCase):
 
         status = StatusModel.objects.get(name='protection')
 
-        response = self.client.post(reverse_lazy('create_task'),
-                                    data={
-                                        'name': 'protect',
-                                        'description':
-                                            'Summon the Northern Houses to defend'
-                                            ' against the Army of the Dead.',
-                                        'status': status.id,
-                                    })
+        response = self.client.post(
+            reverse_lazy('create_task'),
+            data={
+                'name': 'protect',
+                'description':
+                    'Summon the Northern Houses to defend'
+                    ' against the Army of the Dead.',
+                'status': status.id})
         return response
 
     def test_create_task(self):
@@ -70,7 +70,8 @@ class TestTasksCRUD(TestCase):
 
         self.assertTrue(TasksModel.objects.filter(name='protect').exists())
 
-        response = self.client.post(reverse_lazy('delete_task', args=[task.id]))
+        response = self.client.post(
+            reverse_lazy('delete_task', args=[task.id]))
 
         self.assertEqual(response.status_code, 302)
         self.assertFalse(TasksModel.objects.filter(name='protect').exists())
@@ -104,8 +105,7 @@ class TestFilter(TestCase):
                          data={
                              'name': task_name,
                              'status': status.id,
-                             'labels': label.id,
-                         })
+                             'labels': label.id})
 
     def test_view(self):
         self.create_user()
@@ -116,7 +116,8 @@ class TestFilter(TestCase):
         status = StatusModel.objects.get(name='important')
         label = LabelModel.objects.get(name='soon')
 
-        response = self.client.get(reverse_lazy('task_list'), {'status': status.id})
+        response = self.client.get(
+            reverse_lazy('task_list'), {'status': status.id})
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'finish the project', html=True)
         self.assertContains(response, 'find a job', html=True)
@@ -125,6 +126,3 @@ class TestFilter(TestCase):
         response = self.client.get(reverse_lazy('task_list'),
                                    {'status': status.id, 'labels': label.id})
         self.assertContains(response, 'finish the project', html=True)
-
-
-
