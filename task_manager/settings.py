@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -63,8 +64,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'task_manager.error_handler.ErrorMiddleware',
-    # 'task_manager.handler404.Error404Middleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -91,13 +91,19 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
+
+if not DEBUG:
+    DATABASES['default'] = dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 
 
 # Password validation
@@ -107,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
             'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {'min_length': 3},
+        'OPTIONS': {'min_length': 8},
     },
     {
         'NAME':
@@ -147,3 +153,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ROLLBAR = {
+    'access_token': os.getenv('SECRET_TOKEN_ROLLBAR'),
+    'environment': 'development' if DEBUG else 'production',
+    'branch': 'master',
+    'root': os.getcwd(),
+}
