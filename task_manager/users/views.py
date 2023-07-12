@@ -9,15 +9,12 @@ from django.views.generic import DeleteView
 from django.utils.translation import gettext as _
 from task_manager.users.forms import UsersForm
 from task_manager.utils import CheckAuthentication
-from pathlib import Path
-
 
 
 class Users(View):
     template_name = 'users/users.html'
 
     def get(self, request):
-        print(Path(__file__).resolve().parent.parent)
         users = User.objects.all()
         return render(request, self.template_name, {'users': users})
 

@@ -1,10 +1,12 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "It's software that helps you manage tasks effectively, set priorities, and collaborate with a team."
 authors = ["Aliev Nurlan <nualiev420@gmail.com>"]
 readme = "README.md"
 packages = [{include = "task_manager"}]
+repository = "https://github.com/Nurlan-Aliev/python-project-52"
+classifiers = ["Topic :: Internet :: Task Manager"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -13,9 +15,12 @@ python-dotenv = "^1.0.0"
 dj-database-url = "^2.0.0"
 django-bootstrap4 = "^23.1"
 psycopg2-binary = "^2.9.6"
+django-filter = "^23.2"
+rollbar = "^0.16.3"
+
+[tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
 pytest = "^7.4.0"
-django-filter = "^23.2"
 
 
 [build-system]
