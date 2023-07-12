@@ -218,7 +218,7 @@ msgstr "Зарегистрироваться"
 
 #: task_manager/templates/header.html:28
 msgid "Log In"
-msgstr "Войти"
+msgstr "Вход"
 
 #: task_manager/templates/index.html:4
 msgid "Hello"
