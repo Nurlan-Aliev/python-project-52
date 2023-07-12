@@ -2,6 +2,7 @@
 [![Actions Status](https://github.com/Nurlan-Aliev/python-project-52/workflows/hexlet-check/badge.svg)](https://github.com/Nurlan-Aliev/python-project-52/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e845923d5fca1eb63da6/maintainability)](https://codeclimate.com/github/Nurlan-Aliev/python-project-52/maintainability)
 
+
 # Welcome to Task Manager
 
 ## Description 
