@@ -51,4 +51,3 @@ It allows you to set tasks, assign performers and change their statuses. To work
 * Jinja2
 * Requests
 * Flake8
->>>>>>> temporary-branch
