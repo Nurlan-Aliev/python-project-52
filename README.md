@@ -9,6 +9,7 @@
 Task Manager is a powerful tool designed to simplify and organize your workflow. It's software that helps you manage tasks effectively, set priorities, and collaborate with a team.
 It allows you to set tasks, assign performers and change their statuses. To work with the system, registration and authentication are required.
 
+
 ## Key Features 
 * Task Creation: You can easily create new tasks and specify details such as title, description, assigned individuals, and priority.
 * Collaboration and Teamwork: The Task Manager provides an opportunity to collaborate with other team members. You can delegate tasks.
