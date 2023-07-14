@@ -4,11 +4,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.contrib.auth.models import User
-from django.views.generic import CreateView
-from django.views.generic import DeleteView
+from django.views.generic import CreateView, DeleteView, UpdateView
 from django.utils.translation import gettext as _
 from task_manager.users.forms import UsersForm
 from task_manager.utils import CheckAuthentication
+
 
 
 class Users(View):
@@ -40,8 +40,9 @@ class CreateUser(CreateView):
         return render(request, self.template_name, {'form': form})
 
 
-class UpdateUser(CheckAuthentication, View):
+class UpdateUser(CheckAuthentication, UpdateView):
     template_name = 'users/update.html'
+    form_class = UsersForm
 
     def get(self, request, *args, **kwargs):
         user = request.user
@@ -59,17 +60,21 @@ class UpdateUser(CheckAuthentication, View):
     def post(self, request, *args, **kwargs):
         user = request.user
         form = UsersForm(request.POST, instance=user)
+        if user.id != kwargs.get('pk'):
+            messages.error(request, _(
+                'You do not have rights to change another user.'),
+                extra_tags="alert-danger")
+            return redirect(reverse_lazy('user_list'))
         if form.is_valid():
             form.save()
             messages.success(request, _('User changed successfully'),
                              extra_tags="alert-success")
             return redirect(reverse_lazy('user_list'))
-        return redirect(reverse_lazy('user_list'))
 
-        # messages.error(request, _('Incorrect Form'),
-        #                extra_tags="alert-danger")
-        # return render(request, 'users/update.html',
-        #               {'form': form, 'user_id': user.id})
+        messages.error(request, _('Incorrect Form'),
+                       extra_tags="alert-danger")
+        return render(request, self.template_name,
+                      {'form': form, 'user_id': user.id})
 
 
 class DeleteUser(CheckAuthentication, DeleteView):
@@ -89,6 +94,12 @@ class DeleteUser(CheckAuthentication, DeleteView):
 
     def post(self, request, *args, **kwargs):
         user = request.user
+
+        if user.id != kwargs.get('pk'):
+            messages.error(request, _(
+                'You do not have rights to change another user.'),
+                extra_tags="alert-danger")
+            return redirect(reverse_lazy('user_list'))
 
         if user.author_id.exists() or user.executor_id.exists():
             messages.success(request, _("Can't delete user because it used"),
