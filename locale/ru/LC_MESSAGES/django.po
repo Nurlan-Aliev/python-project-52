@@ -203,7 +203,7 @@ msgstr "Выйти"
 #: task_manager/templates/header.html:27
 #: task_manager/users/templates/users/create.html:5
 msgid "Sign Up"
-msgstr "Зарегистрироваться"
+msgstr "Регистрация"
 
 #: task_manager/templates/header.html:28
 msgid "Log In"
@@ -236,7 +236,7 @@ msgstr "Пароль"
 
 #: task_manager/users/templates/users/create.html:38
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: task_manager/users/templates/users/delete.html:8
 msgid "user"

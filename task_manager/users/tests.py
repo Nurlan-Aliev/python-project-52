@@ -52,3 +52,10 @@ class TestUserCRUD(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertFalse(User.objects.filter(
             username='aegon_targaryen').exists())
+
+
+class TsetHTML(TestCase):
+    def test_user(self):
+        response = self.client.get(reverse_lazy('home_page'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Вход')
