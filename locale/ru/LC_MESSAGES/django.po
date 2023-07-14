@@ -298,13 +298,9 @@ msgid "You are not authorized! Please sign in."
 msgstr "Вы не авторизованы! Пожалуйста войдите."
 
 #: task_manager/view.py:36
-#, fuzzy
-#| msgid "You have successfully logged in"
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
 #: task_manager/view.py:51
-#, fuzzy
-#| msgid "You have successfully logged out"
 msgid "You are logged out"
 msgstr "Вы разлогинены"
