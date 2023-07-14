@@ -8,22 +8,32 @@ from django.utils.translation import gettext as _
 class UsersForm(UserCreationForm):
     first_name = forms.CharField(max_length=50, label=_('Name'),
                                  widget=forms.TextInput(
-                                     attrs={'class': 'form-control',
+                                     attrs={'id': 'id_first_name',
+                                            'class': 'form-control',
                                             'placeholder': _('Name')}))
+
     last_name = forms.CharField(max_length=50, label=_('Surname'),
                                 widget=forms.TextInput(
-                                    attrs={'class': 'form-control',
+                                    attrs={'id': 'id_last_name',
+                                           'class': 'form-control',
                                            'placeholder': _('Surname')}))
+
     username = forms.CharField(label=_('username'), widget=forms.TextInput(
-        attrs={'class': 'form-control',
+        attrs={'id': 'id_username',
+               'class': 'form-control',
                'placeholder': _('username')}))
+
     password1 = forms.CharField(
         label=_('Password'), widget=forms.PasswordInput(
-            attrs={'class': 'form-control',
+            attrs={'id': 'id_password1',
+                   'class': 'form-control',
                    'placeholder': _('password')}))
+
     password2 = forms.CharField(
         label=_('Password confirmation'), widget=forms.PasswordInput(
-            attrs={'class': 'form-control', 'placeholder': _('password')}))
+            attrs={'id': 'id_password2',
+                   'class': 'form-control',
+                   'placeholder': _('Password confirmation')}))
 
     class Meta:
         model = User
@@ -35,11 +45,16 @@ class UsersForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
         widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': _('username')}))
+            attrs={'id': 'id_username',
+                   'class': 'form-control',
+                   'placeholder': _('username')}))
+
     password = forms.CharField(
         label=_('Password'),
         widget=forms.PasswordInput(
-            attrs={'class': 'form-control', 'placeholder': _('password')}))
+            attrs={'id': 'id_password',
+                   'class': 'form-control',
+                   'placeholder': _('password')}))
 
     class Meta:
         model = User

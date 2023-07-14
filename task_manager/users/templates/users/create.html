@@ -2,37 +2,36 @@
 {% load i18n %}
 
 
-{% block h1 %}<h1>{% trans "Sign Up" %}</h1>{% endblock %}
+{% block h1 %}<h1 class="mb-4">{% trans "Sign Up" %}</h1>{% endblock %}
 
 
 {% block form %}<form action="{% url 'create_user' %}"  method="post">
     {% csrf_token %}
     <div>
-        <div class="mb=3">
-
-            <label class="form-label">{{ form.first_name.label }}</label>
+        <div class="mb-3">
+            <label class="form-label" for="id_first_name">{{ form.first_name.label }}</label>
             {{ form.first_name }}
-        </div><br>
+        </div>
 
-        <div>
-            <label class="form-label">{{ form.last_name.label }}</label>
+        <div class="mb-3">
+            <label class="form-label" for="id_last_name">{{ form.last_name.label }}</label>
             {{ form.last_name }}
-        </div><br>
+        </div>
 
-        <div>
-            <label class="form-label">{{ form.username.label }}</label>
+        <div class="mb-3">
+            <label class="form-label" for="id_username">{{ form.username.label }}</label>
             {{ form.username }}
-        </div><br>
+        </div>
 
-        <div>
-            <label class="form-label">{{ form.password1.label }}</label>
+        <div class="mb-3">
+            <label class="form-label" for="id_password1">{{ form.password1.label }}</label>
             {{ form.password1 }}
-        </div><br>
+        </div>
 
-        <div>
-            <label class="form-label">{{ form.password2.label }}</label>
+        <div class="mb-3">
+            <label class="form-label" for="id_password2">{{ form.password2.label }}</label>
              {{ form.password2 }}
-        </div><br>
+        </div>
 
         <input class="btn btn-primary" type="submit" value="{% trans 'Register' %}">
     </div>

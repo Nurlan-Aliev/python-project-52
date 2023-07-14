@@ -2,24 +2,23 @@
 {% load i18n %}
 
 
-{% block h1 %}<h1>{% trans "Sign in" %}</h1>{% endblock %}
+{% block h1 %}<h1 class="mb-4">{% trans "Sign in" %}</h1>{% endblock %}
 
 
 {% block form %}<form action="{% url 'login' %}"  method="post">
     {% csrf_token %}
     <div>
-        <div>
-            <label class="form-label">{{ form.username.label }}</label>
-            <div>{{ form.username }}</div>
+        <div class="mb-3">
+            <label class="form-label" for="id_username">{{ form.username.label }}</label>
+            {{ form.username }}
         </div>
-        <br>
-        <div>
-            <label class="form-label">{{ form.password.label }}</label>
-            <div>{{ form.password }}</div>
+
+        <div class="mb-3">
+            <label class="form-label" for="id_password">{{ form.password.label }}</label>
+            {{ form.password }}
         </div>
     </div>
 
-    <br>
     <input class="btn btn-primary" type="submit" value="{% trans 'login' %}">
     {% endblock %}
 </form>
