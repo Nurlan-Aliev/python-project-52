@@ -12,29 +12,28 @@
 
             <label class="form-label">{{ form.first_name.label }}</label>
             {{ form.first_name }}
-        </div>
-        <br>
+        </div><br>
+
         <div>
             <label class="form-label">{{ form.last_name.label }}</label>
             {{ form.last_name }}
-        </div>
-        <br>
+        </div><br>
+
         <div>
             <label class="form-label">{{ form.username.label }}</label>
-            <div>{{ form.username }}</div>
-            {{ form.username.help_text }}
-        </div>
-        <br>
+            {{ form.username }}
+        </div><br>
+
         <div>
             <label class="form-label">{{ form.password1.label }}</label>
             {{ form.password1 }}
-        </div>
-        <br>
+        </div><br>
+
         <div>
             <label class="form-label">{{ form.password2.label }}</label>
-             {{ form.password2 }}</div>
-        </div>
-        <br>
+             {{ form.password2 }}
+        </div><br>
+
         <input class="btn btn-primary" type="submit" value="{% trans 'Register' %}">
     </div>
 
