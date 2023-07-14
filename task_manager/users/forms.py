@@ -14,14 +14,16 @@ class UsersForm(UserCreationForm):
                                 widget=forms.TextInput(
                                     attrs={'class': 'form-control',
                                            'placeholder': _('Surname')}))
-    username = forms.CharField(widget=forms.TextInput(
+    username = forms.CharField(label=_('username'), widget=forms.TextInput(
         attrs={'class': 'form-control',
                'placeholder': _('username')}))
-    password1 = forms.CharField(widget=forms.PasswordInput(
-        attrs={'class': 'form-control',
-               'placeholder': _('password')}))
-    password2 = forms.CharField(widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': _('password')}))
+    password1 = forms.CharField(
+        label=_('Password'), widget=forms.PasswordInput(
+            attrs={'class': 'form-control',
+                   'placeholder': _('password')}))
+    password2 = forms.CharField(
+        label=_('Password confirmation'), widget=forms.PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': _('password')}))
 
     class Meta:
         model = User
@@ -35,6 +37,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(
             attrs={'class': 'form-control', 'placeholder': _('username')}))
     password = forms.CharField(
+        label=_('Password'),
         widget=forms.PasswordInput(
             attrs={'class': 'form-control', 'placeholder': _('password')}))
 
