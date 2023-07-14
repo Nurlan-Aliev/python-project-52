@@ -215,7 +215,7 @@ msgstr "Здравствуй"
 
 #: task_manager/templates/login.html:5
 msgid "Sign in"
-msgstr "Войти"
+msgstr "Вход"
 
 #: task_manager/templates/login.html:23
 msgid "login"
