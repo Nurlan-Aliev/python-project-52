@@ -48,7 +48,7 @@ class CreateTaskView(CheckAuthentication, View):
             user = request.user
             task.author = user
             form.save()
-            messages.success(request, _('Status create successfully'),
+            messages.success(request, _('Task create successfully'),
                              extra_tags="alert-success")
             return redirect(reverse_lazy('task_list'))
         messages.success(request, _('Incorrect Form'),
@@ -72,7 +72,7 @@ class UpdateTaskView(CheckAuthentication, View):
         form = TasksForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            messages.success(request, _('Status update successfully'),
+            messages.success(request, _('Task update successfully'),
                              extra_tags="alert-success")
             return redirect(reverse_lazy('task_list'))
         messages.success(request, _('Incorrect Form'),
@@ -95,7 +95,7 @@ class DeleteTaskView(CheckAuthentication, DeleteView):
         task = TasksModel.objects.get(id=task_id)
         if request.user.id == task.author_id:
             task.delete()
-            messages.success(request, _('Status deleted successfully'),
+            messages.success(request, _('Task deleted successfully'),
                              extra_tags="alert-success")
             return redirect(reverse_lazy('task_list'))
 

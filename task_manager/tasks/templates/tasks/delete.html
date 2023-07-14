@@ -1,7 +1,7 @@
 {% extends "users/delete.html" %}
 {% load i18n %}
 
-
+{% block h1 %}{% trans "Delete task" %}{% endblock %}
 {% block name %}{{ task }}{% endblock %}
 
 {% block form %}<form action="{% url 'delete_task' pk=task.id %}" method="post">{% endblock %}

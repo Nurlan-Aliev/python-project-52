@@ -2,7 +2,7 @@
 {% load i18n %}
 
 
-{% block h1 %}<h1>{% trans "Create" %} {% trans "label" %}</h1>{% endblock %}
+{% block h1 %}<h1 class="mb-4">{% trans "Create label" %}</h1>{% endblock %}
 
 
 {% block form %}<form action="{% url 'create_label' %}"  method="post">
@@ -10,8 +10,8 @@
     <div>
         <div>
 
-            <label class="form-label">{{ form.name.label }}</label>
-            <div>{{ form.name }}</div>
+            <label class="form-label" for="id_name">{{ form.name.label }}</label>
+            {{ form.name }}
         </div>
     </div>
 

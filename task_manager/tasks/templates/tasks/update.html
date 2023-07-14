@@ -2,33 +2,32 @@
 {% load i18n %}
 
 
-{% block h1 %}<h1>{% trans "Update" %} {% trans "task" %}</h1>{% endblock %}
+{% block h1 %}<h1 class="mb-4">{% trans "Update" %} {% trans "task" %}</h1>{% endblock %}
 
 
 {% block form %}<form action="{% url 'update_task' pk=task_id %}"  method="post">
     {% csrf_token %}
     <div>
-        <div>
-
+        <div class="mb-3">
             <label class="form-label" for="id_name">{{ form.name.label }}</label>
             {{ form.name }}
         </div>
-        <br>
-        <div>
+
+        <div class="mb-3">
             <label class="form-label" for="id_description">{{ form.description.label }}</label>
             {{ form.description }}
         </div>
-        <br>
-        <div>
+
+        <div class="mb-3">
             <label class="form-label" for="id_status">{{ form.status.label }}</label>
-            <div>{{ form.status }}
+            {{ form.status }}
         </div>
-        <br>
-        <div>
+
+        <div class="mb-3">
             <label class="form-label" for="id_executor">{{ form.executor.label }}</label>
             {{ form.executor }}
         </div>
-        <br>
+
         <div>
             <label class="form-label" for="id_labels">{{ form.labels.label }}</label>
             {{ form.labels }}

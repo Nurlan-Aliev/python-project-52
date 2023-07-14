@@ -5,7 +5,7 @@
 
 <div class="container wrapper flex-grow">
     <h1 class="my-4">
-        {% trans "Delete" %} {% trans "user" %}
+        {% block h1 %}{% trans "Delete user" %}{% endblock %}
     </h1>
     <p>{% trans "Are you sure you want to delete" %} {% block name %}{{ user.first_name }} {{ user.last_name }}{% endblock %}?</p>
     {% block form %} <form action="{% url 'delete_user' pk=user_id %}" method="post">{% endblock %}

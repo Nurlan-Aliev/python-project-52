@@ -5,9 +5,10 @@ from django.utils.translation import gettext as _
 
 class StatusForm(forms.ModelForm):
     name = forms.CharField(
-        max_length=100, label='Name',
+        max_length=100, label=_('Name'),
         widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': _('Name')}))
+            attrs={'id': 'id_name',
+                   'class': 'form-control', 'placeholder': _('Name')}))
 
     class Meta:
         model = StatusModel
