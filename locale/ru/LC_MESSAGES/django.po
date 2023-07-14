@@ -299,7 +299,7 @@ msgstr "Полное имя"
 
 #: task_manager/users/views.py:34
 msgid "User create successfully"
-msgstr "Пользователь успешно создан"
+msgstr "Пользователь успешно зарегистрирован"
 
 #: task_manager/users/views.py:51 task_manager/users/views.py:83
 msgid "You do not have rights to change another user."
@@ -311,7 +311,7 @@ msgstr "Пользователь успешно изменен"
 
 #: task_manager/users/views.py:94
 msgid "Can't delete user because it used"
-msgstr "Невозможно удалить пользователя, т.к. он используется"
+msgstr "Невозможно удалить пользователя, потому что он используется"
 
 #: task_manager/users/views.py:98
 msgid "User deleted successfully"
