@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-14 09:29+0400\n"
+"POT-Creation-Date: 2023-07-14 11:15+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 #: task_manager/statuses/templates/statuses/index.html:15
 #: task_manager/tasks/forms.py:12 task_manager/tasks/forms.py:14
 #: task_manager/tasks/templates/tasks/tasks.html:14
-#: task_manager/users/forms.py:9 task_manager/users/forms.py:12
+#: task_manager/users/forms.py:9 task_manager/users/forms.py:13
 msgid "Name"
 msgstr "Имя"
 
@@ -218,35 +218,34 @@ msgstr "Здравствуй"
 msgid "Sign in"
 msgstr "Вход"
 
-#: task_manager/templates/login.html:23
+#: task_manager/templates/login.html:22
 msgid "login"
 msgstr "Войти"
 
-#: task_manager/users/forms.py:13 task_manager/users/forms.py:16
+#: task_manager/users/forms.py:15 task_manager/users/forms.py:19
 msgid "Surname"
 msgstr "Фамилия"
 
-#: task_manager/users/forms.py:17 task_manager/users/forms.py:19
-#: task_manager/users/forms.py:38
+#: task_manager/users/forms.py:21 task_manager/users/forms.py:24
+#: task_manager/users/forms.py:50
 msgid "username"
 msgstr "Имя пользователя"
 
-#: task_manager/users/forms.py:21 task_manager/users/forms.py:40
+#: task_manager/users/forms.py:27 task_manager/users/forms.py:53
 #, fuzzy
 #| msgid "password"
 msgid "Password"
 msgstr "Пароль"
 
-#: task_manager/users/forms.py:23 task_manager/users/forms.py:26
-#: task_manager/users/forms.py:42
+#: task_manager/users/forms.py:30 task_manager/users/forms.py:57
 msgid "password"
 msgstr "пароль"
 
-#: task_manager/users/forms.py:25
+#: task_manager/users/forms.py:33 task_manager/users/forms.py:36
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: task_manager/users/templates/users/create.html:38
+#: task_manager/users/templates/users/create.html:36
 msgid "Register"
 msgstr "Зарегистрировать"
 
@@ -299,9 +298,13 @@ msgid "You are not authorized! Please sign in."
 msgstr "Вы не авторизованы! Пожалуйста войдите."
 
 #: task_manager/view.py:36
-msgid "You have successfully logged in"
-msgstr "Вы успешно вошли в систему"
+#, fuzzy
+#| msgid "You have successfully logged in"
+msgid "You are logged in"
+msgstr "Вы залогинены"
 
 #: task_manager/view.py:51
-msgid "You have successfully logged out"
-msgstr "Вы успешно вышли из системы"
+#, fuzzy
+#| msgid "You have successfully logged out"
+msgid "You are logged out"
+msgstr "Вы разлогинены"

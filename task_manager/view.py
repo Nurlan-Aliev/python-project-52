@@ -33,7 +33,7 @@ class LoginUser(LoginView):
         super().post(request, *args, **kwargs)
 
         if request.user.is_authenticated:
-            messages.success(request, _('You have successfully logged in'),
+            messages.success(request, _('You are logged in'),
                              extra_tags="alert-success")
             return redirect(self.redirect_field_name)
 
@@ -48,6 +48,6 @@ class Logout(LogoutView):
 
     def dispatch(self, request, *args, **kwargs):
         super().dispatch(request, *args, **kwargs)
-        messages.info(request, _("You have successfully logged out"),
+        messages.info(request, _("You are logged out"),
                       extra_tags="alert-info")
         return redirect(self.next_page)
