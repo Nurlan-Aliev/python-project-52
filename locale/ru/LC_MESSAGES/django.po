@@ -199,7 +199,7 @@ msgstr "Метки"
 
 #: task_manager/templates/header.html:24
 msgid "Log Out"
-msgstr "Выйти"
+msgstr "Выход"
 
 #: task_manager/templates/header.html:27
 #: task_manager/users/templates/users/create.html:5
