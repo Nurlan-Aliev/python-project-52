@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.views import View
 from django.contrib.auth.models import User
 from django.views.generic import CreateView
@@ -33,7 +33,7 @@ class CreateUser(CreateView):
             form.save()
             messages.success(request, _('User create successfully'),
                              extra_tags="alert-success")
-            return redirect(reverse('login'))
+            return redirect(reverse_lazy('login'))
 
         messages.error(request, _('Incorrect Form'),
                        extra_tags="alert-danger")
@@ -50,7 +50,7 @@ class UpdateUser(CheckAuthentication, View):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
                 extra_tags="alert-danger")
-            return redirect(reverse('user_list'))
+            return redirect(reverse_lazy('user_list'))
 
         form = UsersForm(instance=user)
         return render(request, self.template_name,
@@ -63,12 +63,13 @@ class UpdateUser(CheckAuthentication, View):
             form.save()
             messages.success(request, _('User changed successfully'),
                              extra_tags="alert-success")
-            return redirect(reverse('user_list'))
+            return redirect(reverse_lazy('user_list'))
+        return redirect(reverse_lazy('user_list'))
 
-        messages.error(request, _('Incorrect Form'),
-                       extra_tags="alert-danger")
-        return render(request, 'users/update.html',
-                      {'form': form, 'user_id': user.id})
+        # messages.error(request, _('Incorrect Form'),
+        #                extra_tags="alert-danger")
+        # return render(request, 'users/update.html',
+        #               {'form': form, 'user_id': user.id})
 
 
 class DeleteUser(CheckAuthentication, DeleteView):
@@ -81,7 +82,7 @@ class DeleteUser(CheckAuthentication, DeleteView):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
                 extra_tags="alert-danger")
-            return redirect(reverse('user_list'))
+            return redirect(reverse_lazy('user_list'))
 
         return render(request, self.template_name,
                       {'user': user, 'user_id': user.id})
@@ -99,4 +100,4 @@ class DeleteUser(CheckAuthentication, DeleteView):
 
             user.delete()
 
-        return redirect(reverse('user_list'))
+        return redirect(reverse_lazy('user_list'))
