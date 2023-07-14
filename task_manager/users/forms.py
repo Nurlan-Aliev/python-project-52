@@ -35,6 +35,13 @@ class UsersForm(UserCreationForm):
                    'class': 'form-control',
                    'placeholder': _('Password confirmation')}))
 
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        queryset = User.objects.exclude(pk=self.instance.pk)
+        if queryset.filter(username=username).exists():
+            raise forms.ValidationError('This username is already taken.')
+        return username
+
     class Meta:
         model = User
         fields = ('first_name', 'last_name',

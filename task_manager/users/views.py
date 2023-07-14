@@ -59,7 +59,6 @@ class UpdateUser(CheckAuthentication, View):
     def post(self, request, *args, **kwargs):
         user = request.user
         form = UsersForm(request.POST, instance=user)
-
         if form.is_valid():
             form.save()
             messages.success(request, _('User changed successfully'),
