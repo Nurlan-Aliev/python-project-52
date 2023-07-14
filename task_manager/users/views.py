@@ -40,13 +40,13 @@ class CreateUser(CreateView):
         return render(request, self.template_name, {'form': form})
 
 
-class UpdateUser(CheckAuthentication, UpdateView):
+class UpdateUser(CheckAuthentication, View):
     template_name = 'users/update.html'
     form_class = UsersForm
 
     def get(self, request, *args, **kwargs):
         user = request.user
-
+        user_id = kwargs.get('pk')
         if user.id != kwargs.get('pk'):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
@@ -55,11 +55,13 @@ class UpdateUser(CheckAuthentication, UpdateView):
 
         form = UsersForm(instance=user)
         return render(request, self.template_name,
-                      {'form': form, 'user_id': user.id})
+                      {'form': form, 'user_id': user_id})
 
     def post(self, request, *args, **kwargs):
         user = request.user
         form = UsersForm(request.POST, instance=user)
+        print(user.id)
+        print(self.kwargs)
         if user.id != kwargs.get('pk'):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
@@ -82,7 +84,7 @@ class DeleteUser(CheckAuthentication, DeleteView):
 
     def get(self, request, *args, **kwargs):
         user = request.user
-
+        user_id = kwargs.get('pk')
         if user.id != kwargs.get('pk'):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
@@ -90,7 +92,7 @@ class DeleteUser(CheckAuthentication, DeleteView):
             return redirect(reverse_lazy('user_list'))
 
         return render(request, self.template_name,
-                      {'user': user, 'user_id': user.id})
+                      {'user': user, 'user_id': user_id})
 
     def post(self, request, *args, **kwargs):
         user = request.user
