@@ -41,7 +41,7 @@ class CreateUser(CreateView):
 
 class UpdateUser(CheckAuthentication, View):
     template_name = 'users/update.html'
-    form_class = UsersForm
+    success_url = reverse_lazy('user_list')
 
     def get(self, request, *args, **kwargs):
         user = request.user
@@ -50,7 +50,7 @@ class UpdateUser(CheckAuthentication, View):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
                 extra_tags="alert-danger")
-            return redirect(reverse_lazy('user_list'))
+            return redirect(self.success_url)
 
         form = UsersForm(instance=user)
         return render(request, self.template_name,
@@ -64,15 +64,15 @@ class UpdateUser(CheckAuthentication, View):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
                 extra_tags="alert-danger")
-            return redirect(reverse_lazy('user_list'))
+            return redirect(self.success_url)
         if form.is_valid():
             form.save()
             messages.success(request, _('User changed successfully'),
                              extra_tags="alert-success")
-        return redirect(reverse_lazy('user_list'))
+            return redirect(self.success_url)
 
-        # return render(request, self.template_name,
-        #               {'form': form, 'pk': pk})
+        return render(request, self.template_name,
+                      {'form': form, 'pk': pk})
 
 
 class DeleteUser(CheckAuthentication, DeleteView):
