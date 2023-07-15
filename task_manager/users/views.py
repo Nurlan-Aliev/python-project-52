@@ -69,12 +69,10 @@ class UpdateUser(CheckAuthentication, UpdateView):
             form.save()
             messages.success(request, _('User changed successfully'),
                              extra_tags="alert-success")
-            return redirect(reverse_lazy('user_list'))
+        return redirect(reverse_lazy('user_list'))
 
-        messages.error(request, _('Incorrect Form'),
-                       extra_tags="alert-danger")
-        return render(request, self.template_name,
-                      {'form': form, 'pk': pk})
+        # return render(request, self.template_name,
+        #               {'form': form, 'pk': pk})
 
 
 class DeleteUser(CheckAuthentication, DeleteView):
@@ -101,7 +99,7 @@ class DeleteUser(CheckAuthentication, DeleteView):
                 extra_tags="alert-danger")
             return redirect(reverse_lazy('user_list'))
 
-        if user.author_id.exists() or user.executor_id.exists():
+        elif user.author_id.exists() or user.executor_id.exists():
             messages.success(request, _("Can't delete user because it used"),
                              extra_tags="alert-danger")
 

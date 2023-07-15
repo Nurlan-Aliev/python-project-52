@@ -41,7 +41,7 @@ class UsersForm(UserCreationForm):
         username = self.cleaned_data.get('username')
         queryset = User.objects.exclude(pk=self.instance.pk)
         if queryset.filter(username=username).exists():
-            raise forms.ValidationError('This username is already taken.')
+            raise forms.ValidationError(_('This username is already taken.'))
         return username
 
     class Meta:
