@@ -10,7 +10,6 @@ from task_manager.users.forms import UsersForm
 from task_manager.utils import CheckAuthentication
 
 
-
 class Users(View):
     template_name = 'users/users.html'
 
@@ -40,13 +39,13 @@ class CreateUser(CreateView):
         return render(request, self.template_name, {'form': form})
 
 
-class UpdateUser(CheckAuthentication, View):
+class UpdateUser(CheckAuthentication, UpdateView):
     template_name = 'users/update.html'
     form_class = UsersForm
 
     def get(self, request, *args, **kwargs):
         user = request.user
-        user_id = kwargs.get('pk')
+        pk = kwargs.get('pk')
         if user.id != kwargs.get('pk'):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
@@ -55,13 +54,12 @@ class UpdateUser(CheckAuthentication, View):
 
         form = UsersForm(instance=user)
         return render(request, self.template_name,
-                      {'form': form, 'user_id': user_id})
+                      {'form': form, 'pk': pk})
 
     def post(self, request, *args, **kwargs):
         user = request.user
         form = UsersForm(request.POST, instance=user)
-        print(user.id)
-        print(self.kwargs)
+        pk = kwargs.get('pk')
         if user.id != kwargs.get('pk'):
             messages.error(request, _(
                 'You do not have rights to change another user.'),
@@ -76,7 +74,7 @@ class UpdateUser(CheckAuthentication, View):
         messages.error(request, _('Incorrect Form'),
                        extra_tags="alert-danger")
         return render(request, self.template_name,
-                      {'form': form, 'user_id': user.id})
+                      {'form': form, 'pk': pk})
 
 
 class DeleteUser(CheckAuthentication, DeleteView):

@@ -25,13 +25,15 @@ class UsersForm(UserCreationForm):
 
     password1 = forms.CharField(
         label=_('Password'), widget=forms.PasswordInput(
-            attrs={'id': 'id_password1',
+            attrs={'autocomplete': 'new-password',
+                   'id': 'id_password1',
                    'class': 'form-control',
                    'placeholder': _('password')}))
 
     password2 = forms.CharField(
         label=_('Password confirmation'), widget=forms.PasswordInput(
-            attrs={'id': 'id_password2',
+            attrs={'autocomplete': 'new-password',
+                   'id': 'id_password2',
                    'class': 'form-control',
                    'placeholder': _('Password confirmation')}))
 
