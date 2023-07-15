@@ -289,7 +289,7 @@ msgstr "Да"
 
 #: task_manager/users/templates/users/delete.html:13
 msgid "delete"
-msgstr "Удалить"
+msgstr "удалить"
 
 #: task_manager/users/templates/users/update.html:5
 msgid "Update user"
