@@ -39,7 +39,7 @@ class CreateUser(CreateView):
         return render(request, self.template_name, {'form': form})
 
 
-class UpdateUser(CheckAuthentication, UpdateView):
+class UpdateUser(CheckAuthentication, View):
     template_name = 'users/update.html'
     form_class = UsersForm
 
