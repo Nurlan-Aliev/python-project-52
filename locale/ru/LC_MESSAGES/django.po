@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-15 21:04+0400\n"
+"POT-Creation-Date: 2023-07-15 22:44+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,8 +69,7 @@ msgstr "Дата создания"
 #: task_manager/tasks/templates/tasks/tasks.html:30
 #: task_manager/tasks/templates/tasks/update.html:5
 #: task_manager/tasks/templates/tasks/update.html:42
-#: task_manager/users/templates/users/update.html:5
-#: task_manager/users/templates/users/update.html:54
+#: task_manager/users/templates/users/update.html:52
 #: task_manager/users/templates/users/users.html:23
 msgid "Update"
 msgstr "Изменить"
@@ -96,8 +95,7 @@ msgstr "Метка успешно создана"
 #: task_manager/labels/views.py:34 task_manager/labels/views.py:58
 #: task_manager/statuses/views.py:36 task_manager/statuses/views.py:63
 #: task_manager/tasks/views.py:54 task_manager/tasks/views.py:78
-#: task_manager/users/views.py:37 task_manager/users/views.py:73
-#: task_manager/view.py:40
+#: task_manager/users/views.py:37 task_manager/view.py:40
 msgid "Incorrect Form"
 msgstr "Неверная форма"
 
@@ -263,7 +261,7 @@ msgstr "Пароль"
 
 #: task_manager/users/forms.py:31 task_manager/users/forms.py:66
 msgid "password"
-msgstr "пароль"
+msgstr "Пароль"
 
 #: task_manager/users/forms.py:34 task_manager/users/forms.py:38
 msgid "Password confirmation"
@@ -293,6 +291,10 @@ msgstr "Да"
 msgid "delete"
 msgstr "Удалить"
 
+#: task_manager/users/templates/users/update.html:5
+msgid "Update user"
+msgstr "Изменение пользователя"
+
 #: task_manager/users/templates/users/users.html:11
 msgid "User name"
 msgstr "Имя пользователя"
@@ -306,7 +308,7 @@ msgid "User create successfully"
 msgstr "Пользователь успешно зарегистрирован"
 
 #: task_manager/users/views.py:51 task_manager/users/views.py:65
-#: task_manager/users/views.py:87 task_manager/users/views.py:99
+#: task_manager/users/views.py:86 task_manager/users/views.py:98
 msgid "You do not have rights to change another user."
 msgstr "Вы не можете изменить другого пользователя"
 
@@ -314,11 +316,11 @@ msgstr "Вы не можете изменить другого пользова�
 msgid "User changed successfully"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:104
+#: task_manager/users/views.py:103
 msgid "Can't delete user because it used"
 msgstr "Невозможно удалить пользователя, потому что он используется"
 
-#: task_manager/users/views.py:108
+#: task_manager/users/views.py:107
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удален"
 
