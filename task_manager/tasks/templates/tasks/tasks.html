@@ -26,7 +26,7 @@
             <td>{{ task.status }}</td>
             <td>{{ task.author }}</td>
             <td>{% if task.executor %}
-                    {{ task.executor }}
+                    {{ task.executor.first_name }} {{ task.executor.last_name }}
                 {%  endif %}
             </td>
             <td>{{ task.timestamp }}</td>
