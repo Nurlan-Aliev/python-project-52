@@ -32,6 +32,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'webserver',
+    'task-manager-o9zw.onrender.com',
 ]
 
 
@@ -43,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'django_filters',
     'task_manager',
     'bootstrap4',
@@ -139,11 +139,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
