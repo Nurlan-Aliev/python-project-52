@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from task_manager.labels.models import LabelModel
 import django_filters
+from task_manager.utils import UserChoiceField
 
 
 class TasksForm(forms.ModelForm):
@@ -28,11 +29,13 @@ class TasksForm(forms.ModelForm):
             attrs={'id': 'id_status',
                    'class': 'form-select'}))
 
-    executor = forms.ModelChoiceField(
+    executor = UserChoiceField(
         queryset=User.objects.all(), label=_('Executor'),
         required=False,
+
         widget=forms.Select(
             attrs={'id': 'id_executor',
+
                    'class': 'form-select'}))
 
     labels = forms.ModelMultipleChoiceField(

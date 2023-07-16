@@ -13,11 +13,11 @@ class HomePageViews(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             user = request.user
-            form = user.first_name
+            full_name = f"{ user.first_name } { user.last_name }"
         else:
-            form = 'World'
+            full_name = 'World'
 
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'full_name': full_name})
 
 
 class LoginUser(LoginView):

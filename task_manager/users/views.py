@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.contrib.auth.models import User
-from django.views.generic import CreateView, DeleteView, UpdateView
+from django.views.generic import CreateView, DeleteView
 from django.utils.translation import gettext as _
 from task_manager.users.forms import UsersForm
 from task_manager.utils import CheckAuthentication
