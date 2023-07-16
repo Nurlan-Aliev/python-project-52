@@ -26,4 +26,5 @@ class UserChoiceField(forms.ModelChoiceField):
 class UserFiletField(django_filters.ModelChoiceFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.field.label_from_instance = lambda obj: f"{obj.first_name} {obj.last_name}"
+        self.field.label_from_instance =\
+            lambda obj: f"{obj.first_name} {obj.last_name}"
