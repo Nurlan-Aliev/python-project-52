@@ -45,8 +45,8 @@ class CreateTaskView(CheckAuthentication, View):
 
         if form.is_valid():
             task = form.save(commit=False)
-            user = request.user
-            task.author = user
+            author = request.user
+            task.author = author
             form.save()
             messages.success(request, _('Task create successfully'),
                              extra_tags="alert-success")
