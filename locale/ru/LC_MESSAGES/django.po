@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 10:27+0400\n"
+"POT-Creation-Date: 2023-07-16 11:02+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,10 +82,10 @@ msgid "Delete"
 msgstr "Удалить"
 
 #: task_manager/labels/templates/labels/update.html:5
-#: task_manager/tasks/forms.py:42 task_manager/tasks/forms.py:68
+#: task_manager/tasks/forms.py:42
 #: task_manager/tasks/templates/tasks/task_view.html:70
 msgid "label"
-msgstr "Метки"
+msgstr "Метка"
 
 #: task_manager/labels/views.py:31
 msgid "Label create successfully"
@@ -160,6 +160,10 @@ msgstr "Статус"
 msgid "Executor"
 msgstr "Исполнитель"
 
+#: task_manager/tasks/forms.py:68 task_manager/templates/header.html:16
+msgid "labels"
+msgstr "Метки"
+
 #: task_manager/tasks/forms.py:76
 msgid "Only your tasks"
 msgstr "Только свои задачи"
@@ -219,10 +223,6 @@ msgstr "Менеджер задач"
 #: task_manager/users/templates/users/users.html:5
 msgid "Users"
 msgstr "Пользователи"
-
-#: task_manager/templates/header.html:16
-msgid "labels"
-msgstr "Метки"
 
 #: task_manager/templates/header.html:24
 msgid "Log Out"

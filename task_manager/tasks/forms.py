@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from task_manager.labels.models import LabelModel
 import django_filters
-from task_manager.utils import UserChoiceField
+from task_manager.utils import UserChoiceField, UserFiletField
 
 
 class TasksForm(forms.ModelForm):
@@ -39,7 +39,7 @@ class TasksForm(forms.ModelForm):
                    'class': 'form-select'}))
 
     labels = forms.ModelMultipleChoiceField(
-        queryset=LabelModel.objects.all(), label=_('label'),
+        queryset=LabelModel.objects.all(), label=_('labels'),
         required=False,
         widget=forms.SelectMultiple(attrs={'id': 'id_labels',
                                            'class': 'form-select'})
@@ -58,7 +58,7 @@ class FilterForm(django_filters.FilterSet):
             attrs={'id': 'id_status',
                    'class': 'form-select'}))
 
-    executor = django_filters.ModelChoiceFilter(
+    executor = UserFiletField(
         queryset=User.objects.all(), label=_('Executor'), required=False,
         widget=forms.Select(
             attrs={'id': 'id_executor',
