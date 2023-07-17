@@ -15,7 +15,7 @@ class HomePageViews(View):
             user = request.user
             full_name = f"{ user.first_name } { user.last_name }"
         else:
-            full_name = 'World'
+            full_name = _('World')
 
         return render(request, self.template_name, {'full_name': full_name})
 

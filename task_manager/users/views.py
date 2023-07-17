@@ -27,15 +27,15 @@ class CreateUser(CreateView):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
+
         form = UsersForm(request.POST)
+        print(form['password2'].help_text)
         if form.is_valid():
             form.save()
             messages.success(request, _('User create successfully'),
                              extra_tags="alert-success")
             return redirect(reverse_lazy('login'))
 
-        messages.error(request, _('Incorrect Form'),
-                       extra_tags="alert-danger")
         return render(request, self.template_name, {'form': form})
 
 

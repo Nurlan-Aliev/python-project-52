@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 11:02+0400\n"
+"POT-Creation-Date: 2023-07-17 19:56+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,7 +82,7 @@ msgid "Delete"
 msgstr "Удалить"
 
 #: task_manager/labels/templates/labels/update.html:5
-#: task_manager/tasks/forms.py:42
+#: task_manager/tasks/forms.py:68
 #: task_manager/tasks/templates/tasks/task_view.html:70
 msgid "label"
 msgstr "Метка"
@@ -94,7 +94,7 @@ msgstr "Метка успешно создана"
 #: task_manager/labels/views.py:34 task_manager/labels/views.py:58
 #: task_manager/statuses/views.py:36 task_manager/statuses/views.py:63
 #: task_manager/tasks/views.py:54 task_manager/tasks/views.py:78
-#: task_manager/users/views.py:37 task_manager/view.py:40
+#: task_manager/view.py:40
 msgid "Incorrect Form"
 msgstr "Неверная форма"
 
@@ -160,7 +160,7 @@ msgstr "Статус"
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/tasks/forms.py:68 task_manager/templates/header.html:16
+#: task_manager/tasks/forms.py:42 task_manager/templates/header.html:16
 msgid "labels"
 msgstr "Метки"
 
@@ -274,7 +274,7 @@ msgstr "Подтверждение пароля"
 msgid "This username is already taken."
 msgstr "Это имя пользователя уже используется"
 
-#: task_manager/users/templates/users/create.html:36
+#: task_manager/users/templates/users/create.html:46
 msgid "Register"
 msgstr "Зарегистрировать"
 
@@ -306,7 +306,7 @@ msgstr "Имя пользователя"
 msgid "Full name"
 msgstr "Полное имя"
 
-#: task_manager/users/views.py:33
+#: task_manager/users/views.py:35
 msgid "User create successfully"
 msgstr "Пользователь успешно зарегистрирован"
 
@@ -327,9 +327,13 @@ msgstr "Невозможно удалить пользователя, потом
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/utils.py:15
+#: task_manager/utils.py:16
 msgid "You are not authorized! Please sign in."
 msgstr "Вы не авторизованы! Пожалуйста войдите."
+
+#: task_manager/view.py:18
+msgid "World"
+msgstr "Мир"
 
 #: task_manager/view.py:36
 msgid "You are logged in"
