@@ -4,18 +4,13 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django import forms
 import django_filters
+from django.contrib.messages.views import SuccessMessageMixin
 
 
-class CheckAuthentication(LoginRequiredMixin):
+class AppLoginMixin(LoginRequiredMixin, SuccessMessageMixin):
     redirect_field_name = None
     login_url = reverse_lazy('login')
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.success(request,
-                             _('You are not authorized! Please sign in.'),
-                             extra_tags="alert-danger")
-        return super().dispatch(request, *args, **kwargs)
+    success_message = _('You are not authorized! Please sign in.')
 
 
 class UserChoiceField(forms.ModelChoiceField):

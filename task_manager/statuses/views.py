@@ -6,10 +6,10 @@ from task_manager.statuses.models import StatusModel
 from task_manager.statuses.forms import StatusForm
 from django.utils.translation import gettext as _
 from django.contrib import messages
-from task_manager.utils import CheckAuthentication
+from task_manager.utils import AppLoginMixin
 
 
-class StatusesView(CheckAuthentication, View):
+class StatusesView(AppLoginMixin, View):
     template_name = 'statuses/index.html'
 
     def get(self, request, *args, **kwargs):
@@ -17,7 +17,7 @@ class StatusesView(CheckAuthentication, View):
         return render(request, self.template_name, {'statuses': statuses})
 
 
-class CreateStatusesView(CheckAuthentication, View):
+class CreateStatusesView(AppLoginMixin, View):
     template_name = 'statuses/create.html'
 
     def get(self, request, *args, **kwargs):
@@ -38,7 +38,7 @@ class CreateStatusesView(CheckAuthentication, View):
         return render(request, self.template_name, {'form': form})
 
 
-class UpdateStatusesView(CheckAuthentication, View):
+class UpdateStatusesView(AppLoginMixin, View):
     template_name = 'statuses/update.html'
 
     def get(self, request, *args, **kwargs):
@@ -65,7 +65,7 @@ class UpdateStatusesView(CheckAuthentication, View):
         return render(request, self.template_name, {'form': form})
 
 
-class DeleteStatusesView(CheckAuthentication, DeleteView):
+class DeleteStatusesView(AppLoginMixin, DeleteView):
     template_name = 'statuses/delete.html'
 
     def get(self, request, *args, **kwargs):

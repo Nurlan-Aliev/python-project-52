@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext as _
 
 
-class UsersForm(UserCreationForm):
+class UserForm(UserCreationForm):
     first_name = forms.CharField(max_length=50, label=_('Name'),
                                  widget=forms.TextInput(
                                      attrs={'id': 'id_first_name',

@@ -5,7 +5,7 @@
 {% block h1 %}<h1>{% trans "Update user" %}</h1>{% endblock %}
 
 
-{% block form %}<form action="{% url 'update_user' pk=pk %}"  method="post">
+{% block form %}<form action="{% url 'update_user' pk=user.id %}"  method="post">
     {% csrf_token %}
     <div class="mb-3">
         <label class="form-label" for="id_first_name">{{ form.first_name.label }}</label>

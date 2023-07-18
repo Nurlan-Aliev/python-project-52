@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DeleteView
-from task_manager.utils import CheckAuthentication
+from task_manager.utils import AppLoginMixin
 from django.views import View
 from task_manager.labels.models import LabelModel
 from task_manager.labels.forms import LabelForms
@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 
 
-class LabelView(CheckAuthentication, View):
+class LabelView(AppLoginMixin, View):
     template_name = 'labels/labels.html'
 
     def get(self, request, *args, **kwargs):
@@ -17,7 +17,7 @@ class LabelView(CheckAuthentication, View):
         return render(request, self.template_name, {'labels': labels})
 
 
-class CreateLabel(CheckAuthentication, View):
+class CreateLabel(AppLoginMixin, View):
     template_name = 'labels/create.html'
 
     def get(self, request, *args, **kwargs):
@@ -36,7 +36,7 @@ class CreateLabel(CheckAuthentication, View):
         return render(request, self.template_name, {'form': form})
 
 
-class UpdateLabel(CheckAuthentication, View):
+class UpdateLabel(AppLoginMixin, View):
     template_name = 'labels/update.html'
 
     def get(self, request, *args, **kwargs):
@@ -61,7 +61,7 @@ class UpdateLabel(CheckAuthentication, View):
                       {'form': form, 'label_id': label_id})
 
 
-class DeleteLabel(CheckAuthentication, DeleteView):
+class DeleteLabel(AppLoginMixin, DeleteView):
     template_name = 'labels/delete.html'
 
     def get(self, request, *args, **kwargs):

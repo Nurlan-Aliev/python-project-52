@@ -7,8 +7,8 @@
     <h1 class="my-4">
         {% block h1 %}{% trans "Delete user" %}{% endblock %}
     </h1>
-    <p>{% trans "Are you sure you want to delete" %} {% block name %}{{ user.first_name }} {{ user.last_name }}{% endblock %}?</p>
-    {% block form %} <form action="{% url 'delete_user' pk=user_id %}" method="post">{% endblock %}
+    <p>{% trans "Are you sure you want to delete" %} {{ object }} ?</p>
+        {% block form %} <form method="post">{% endblock %}
         {% csrf_token %}
        <input class="btn btn-danger" type="submit" value="{% trans 'Yes' %}, {% trans 'delete' %}">
     </form>

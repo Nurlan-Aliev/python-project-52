@@ -5,7 +5,7 @@
 {% block h1 %}<h1 class="mb-4">{% trans "Update" %} {% trans "task" %}</h1>{% endblock %}
 
 
-{% block form %}<form action="{% url 'update_task' pk=task_id %}"  method="post">
+{% block form %}<form method="post">
     {% csrf_token %}
     <div>
         <div class="mb-3">
