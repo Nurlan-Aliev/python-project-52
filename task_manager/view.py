@@ -1,9 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
 from task_manager.users.forms import LoginForm
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib import messages
 from django.utils.translation import gettext as _
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -26,6 +25,8 @@ class LoginUser(SuccessMessageMixin, LoginView):
     next_page = reverse_lazy('home_page')
     authentication_form = LoginForm
     success_message = _('You are logged in')
+    extra_context = {'title': _('login'), 'button': _('Sign in')}
+
 
 
 class Logout(LogoutView, SuccessMessageMixin):

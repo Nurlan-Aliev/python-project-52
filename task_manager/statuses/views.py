@@ -1,88 +1,40 @@
-from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic import DeleteView
 from task_manager.statuses.models import StatusModel
 from task_manager.statuses.forms import StatusForm
 from django.utils.translation import gettext as _
-from django.contrib import messages
 from task_manager.utils import AppLoginMixin
+from django.views.generic import (ListView,
+                                  CreateView,
+                                  UpdateView,
+                                  DeleteView)
 
 
-class StatusesView(AppLoginMixin, View):
+class StatusesView(AppLoginMixin, ListView):
     template_name = 'statuses/index.html'
-
-    def get(self, request, *args, **kwargs):
-        statuses = StatusModel.objects.all()
-        return render(request, self.template_name, {'statuses': statuses})
+    model = StatusModel
 
 
-class CreateStatusesView(AppLoginMixin, View):
-    template_name = 'statuses/create.html'
-
-    def get(self, request, *args, **kwargs):
-        form = StatusForm
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = StatusForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('Status create successfully'),
-                             extra_tags="alert-success")
-            return redirect(reverse_lazy('status_list'))
-
-        messages.success(request, _('Incorrect Form'),
-                         extra_tags="alert-danger")
-        return render(request, self.template_name, {'form': form})
+class CreateStatusesView(AppLoginMixin, CreateView):
+    template_name = 'edit.html'
+    form_class = StatusForm
+    model = StatusModel
+    success_url = reverse_lazy('status_list')
+    success_message = _("Status create successfully")
+    extra_context = {'title': _('Create status'), 'button': _('Create')}
 
 
-class UpdateStatusesView(AppLoginMixin, View):
-    template_name = 'statuses/update.html'
-
-    def get(self, request, *args, **kwargs):
-        status_id = kwargs.get('pk')
-        status = StatusModel.objects.get(id=status_id)
-        form = StatusForm(instance=status)
-
-        return render(request, self.template_name,
-                      {'form': form, 'status_id': status_id})
-
-    def post(self, request, *args, **kwargs):
-        status_id = kwargs.get('pk')
-        status = StatusModel.objects.get(id=status_id)
-        form = StatusForm(request.POST, instance=status)
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('Status update successfully'),
-                             extra_tags="alert-success")
-            return redirect(reverse_lazy('status_list'))
-
-        messages.success(request, _('Incorrect Form'),
-                         extra_tags="alert-danger")
-        return render(request, self.template_name, {'form': form})
+class UpdateStatusesView(AppLoginMixin, UpdateView):
+    template_name = 'edit.html'
+    form_class = StatusForm
+    model = StatusModel
+    success_url = reverse_lazy('status_list')
+    success_message = _("Status update successfully")
+    extra_context = {'title': _('Update status'), 'button': _('Update')}
 
 
 class DeleteStatusesView(AppLoginMixin, DeleteView):
-    template_name = 'statuses/delete.html'
-
-    def get(self, request, *args, **kwargs):
-        status_id = kwargs.get('pk')
-        status = StatusModel.objects.get(id=status_id)
-
-        return render(request, self.template_name, {
-            'status': status})
-
-    def post(self, request, *args, **kwargs):
-        status_id = kwargs.get('pk')
-        status = StatusModel.objects.get(id=status_id)
-        if status.status_id.exists():
-            messages.success(request, _("Can't delete status because it used"),
-                             extra_tags="alert-danger")
-        else:
-            status.delete()
-            messages.success(request, _('Status deleted successfully'),
-                             extra_tags="alert-success")
-        return redirect(reverse_lazy('status_list'))
+    template_name = 'delete.html'
+    model = StatusModel
+    success_url = reverse_lazy('status_list')
+    success_message = _('Status deleted successfully')
+    extra_context = {'title': _('Delete status')}

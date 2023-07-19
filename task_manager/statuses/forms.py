@@ -8,7 +8,7 @@ class StatusForm(forms.ModelForm):
         max_length=100, label=_('Name'),
         widget=forms.TextInput(
             attrs={'id': 'id_name',
-                   'class': 'form-control', 'placeholder': _('Name')}))
+                   'class': 'form-control mb-3', 'placeholder': _('Name')}))
 
     class Meta:
         model = StatusModel

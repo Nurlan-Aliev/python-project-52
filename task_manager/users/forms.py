@@ -9,32 +9,32 @@ class UserForm(UserCreationForm):
     first_name = forms.CharField(max_length=50, label=_('Name'),
                                  widget=forms.TextInput(
                                      attrs={'id': 'id_first_name',
-                                            'class': 'form-control',
+                                            'class': 'form-control mb-3',
                                             'placeholder': _('Name')}))
 
     last_name = forms.CharField(max_length=50, label=_('Surname'),
                                 widget=forms.TextInput(
                                     attrs={'id': 'id_last_name',
-                                           'class': 'form-control',
+                                           'class': 'form-control mb-3',
                                            'placeholder': _('Surname')}))
 
     username = forms.CharField(label=_('username'), widget=forms.TextInput(
         attrs={'id': 'id_username',
-               'class': 'form-control',
+               'class': 'form-control mb-3',
                'placeholder': _('username')}))
 
     password1 = forms.CharField(
         label=_('Password'), widget=forms.PasswordInput(
             attrs={'autocomplete': 'new-password',
                    'id': 'id_password1',
-                   'class': 'form-control',
+                   'class': 'form-control mb-3',
                    'placeholder': _('password')}))
 
     password2 = forms.CharField(
         label=_('Password confirmation'), widget=forms.PasswordInput(
             attrs={'autocomplete': 'new-password',
                    'id': 'id_password2',
-                   'class': 'form-control',
+                   'class': 'form-control mb-3',
                    'placeholder': _('Password confirmation')}))
 
     def clean_username(self):

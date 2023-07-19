@@ -8,7 +8,7 @@ class LabelForms(forms.ModelForm):
                            widget=forms.TextInput(
                                attrs={'placeholder': _('Name'),
                                       'id': 'id_name',
-                                      'class': 'form-control'}))
+                                      'class': 'form-control mb-3'}))
 
     class Meta:
         model = LabelModel

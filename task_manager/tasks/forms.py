@@ -14,12 +14,12 @@ class TasksForm(forms.ModelForm):
                            widget=forms.TextInput(
                                attrs={'placeholder': _('Name'),
                                       'id': 'id_name',
-                                      'class': 'form-control'}))
+                                      'class': 'form-control mb-3'}))
 
     description = forms.CharField(
         required=False, label=_('Description'),
         widget=forms.Textarea(
-            attrs={'class': 'form-control',
+            attrs={'class': 'form-control mb-3',
                    'id': 'id_description',
                    'placeholder': _('Description')}))
 
@@ -27,7 +27,7 @@ class TasksForm(forms.ModelForm):
         queryset=StatusModel.objects.all(), label=_('Status'),
         widget=forms.Select(
             attrs={'id': 'id_status',
-                   'class': 'form-select'}))
+                   'class': 'form-select mb-3'}))
 
     executor = UserChoiceField(
         queryset=User.objects.all(), label=_('Executor'),
@@ -36,13 +36,13 @@ class TasksForm(forms.ModelForm):
         widget=forms.Select(
             attrs={'id': 'id_executor',
 
-                   'class': 'form-select'}))
+                   'class': 'form-select mb-3'}))
 
     labels = forms.ModelMultipleChoiceField(
         queryset=LabelModel.objects.all(), label=_('labels'),
         required=False,
         widget=forms.SelectMultiple(attrs={'id': 'id_labels',
-                                           'class': 'form-select'})
+                                           'class': 'form-select mb-3'})
     )
 
     class Meta:

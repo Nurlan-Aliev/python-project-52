@@ -5,13 +5,12 @@
 
 <div class="container wrapper flex-grow">
     <h1 class="my-4">
-        {% block h1 %}{% trans "Delete user" %}{% endblock %}
+        {{ title }}
     </h1>
     <p>{% trans "Are you sure you want to delete" %} {{ object }} ?</p>
-        {% block form %} <form method="post">{% endblock %}
+        <form method="post">
         {% csrf_token %}
-       <input class="btn btn-danger" type="submit" value="{% trans 'Yes' %}, {% trans 'delete' %}">
+            <button class="btn btn-danger mb-3" type="submit">{% trans 'Yes, delete' %}</button>
     </form>
-
 </div>
 {% endblock %}
