@@ -1,11 +1,20 @@
 {% extends "base.html" %}
+{% load bootstrap4 %}
 {% load i18n %}
 {% block main %}
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">{% trans "Tasks" %}</h1>
 
     <a class="d-flex justify-content-end text-black text-decoration-none" href="{% url 'create_task' %}">{% trans "Create task" %}</a>
-    {% include 'tasks/task_filter.html' %}
+
+    <div class="card">
+        <div class="card-header bg-light text-black">
+            <form method="get">
+            {% bootstrap_form filter.form size='small' %}
+            {% buttons %}<button type="submit" class="btn btn-primary mb-3">{% trans "Send" %}</button>{% endbuttons %}
+            </form>
+         </div>
+    </div>
     <br>
 
     <table class="table table-striped">

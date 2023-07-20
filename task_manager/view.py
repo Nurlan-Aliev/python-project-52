@@ -28,7 +28,6 @@ class LoginUser(SuccessMessageMixin, LoginView):
     extra_context = {'title': _('login'), 'button': _('Sign in')}
 
 
-
 class Logout(LogoutView, SuccessMessageMixin):
     next_page = reverse_lazy('home_page')
     success_message = _('You are logged out')

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from task_manager.labels.models import LabelModel
 import django_filters
-from task_manager.utils import UserChoiceField, UserFiletField
+from task_manager.utils import UserChoiceFieldMixin, UserFiletFieldMixin
 
 
 class TasksForm(forms.ModelForm):
@@ -29,7 +29,7 @@ class TasksForm(forms.ModelForm):
             attrs={'id': 'id_status',
                    'class': 'form-select mb-3'}))
 
-    executor = UserChoiceField(
+    executor = UserChoiceFieldMixin(
         queryset=User.objects.all(), label=_('Executor'),
         required=False,
 
@@ -56,25 +56,36 @@ class FilterForm(django_filters.FilterSet):
         queryset=StatusModel.objects.all(), label=_('Status'),
         widget=forms.Select(
             attrs={'id': 'id_status',
-                   'class': 'form-select'}))
+                   'class': 'form-select mb-3'}))
 
-    executor = UserFiletField(
+    executor = UserFiletFieldMixin(
+
         queryset=User.objects.all(), label=_('Executor'), required=False,
         widget=forms.Select(
             attrs={'id': 'id_executor',
-                   'class': 'form-select'}))
+                   'class': 'form-select mb-3'}))
 
     labels = django_filters.ModelChoiceFilter(
         queryset=LabelModel.objects.all(), label=_('label'),
         required=False,
         widget=forms.Select(attrs={'id': 'id_labels',
-                                   'class': 'form-select'}))
+                                   'class': 'form-select mb-3'}))
 
-    self_tasks = django_filters.BooleanFilter(
+    def filter_is_mine(self, queryset, name, value):
+        lookup = queryset.filter(author=self.request.user)
+        return lookup if value else queryset
+
+    author = django_filters.BooleanFilter(
         widget=forms.CheckboxInput(attrs=({'id': 'id_self_tasks',
-                                           'class': 'form-check-input'})),
-        method='filter_is_mine', label=_('Only your tasks'))
+                                           'class': 'form-check-input',
+                                           })),
+        method='filter_is_mine',
+        label=_('Only your tasks'))
 
     class Meta:
         model = TasksModel
-        fields = ['status', 'executor', 'labels', 'self_tasks']
+        fields = ['status',
+                  'executor',
+                  'labels',
+                  'author'
+                  ]

@@ -55,14 +55,14 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={'id': 'id_username',
-                   'class': 'form-control',
+                   'class': 'form-control mb-3',
                    'placeholder': _('username')}))
 
     password = forms.CharField(
         label=_('Password'),
         widget=forms.PasswordInput(
             attrs={'id': 'id_password',
-                   'class': 'form-control',
+                   'class': 'form-control mb-3',
                    'placeholder': _('password')}))
 
     class Meta:

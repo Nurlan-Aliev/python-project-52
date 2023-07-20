@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
+from django_filters.views import FilterView
 from task_manager.utils import AppLoginMixin
 from task_manager.tasks.forms import TasksForm
 from task_manager.tasks.models import TasksModel
@@ -9,9 +10,11 @@ from task_manager.tasks.forms import FilterForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 
 
-class TaskListView(AppLoginMixin, ListView):
+class TaskListView(AppLoginMixin, FilterView, ListView):
     template_name = 'tasks/tasks.html'
     model = TasksModel
+    filterset_class = FilterForm
+    context_object_name = 'tasks'
 
 
 class CreateTaskView(AppLoginMixin, CreateView):
