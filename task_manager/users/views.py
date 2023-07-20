@@ -33,7 +33,7 @@ class UpdateUser(UserPassMixin, UpdateView, SuccessMessageMixin):
     extra_context = {'title': _('Update user'), 'button': _('Update')}
 
 
-class DeleteUser(UserPassMixin, SuccessMessageMixin, DeleteView):
+class DeleteUser(UserPassMixin, DeleteView, SuccessMessageMixin):
     template_name = 'delete.html'
     model = User
     success_url = reverse_lazy('user_list')

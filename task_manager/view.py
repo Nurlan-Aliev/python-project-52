@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from task_manager.users.forms import LoginForm
@@ -31,3 +32,6 @@ class LoginUser(SuccessMessageMixin, LoginView):
 class Logout(LogoutView, SuccessMessageMixin):
     next_page = reverse_lazy('home_page')
     success_message = _('You are logged out')
+    def dispatch(self, request, *args, **kwargs):
+        messages.info(self.request, _('You are logged out'))
+        return super().dispatch(request, *args, **kwargs)

@@ -11,7 +11,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 class UserPassMixin(UserPassesTestMixin):
     redirect_field_name = None
     raise_exception = False
-    permission_denied_message = _("You have no right to edit the user.")
 
     def test_func(self):
         user = self.get_object()
