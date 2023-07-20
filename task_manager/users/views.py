@@ -1,10 +1,13 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
-from django.views.generic import CreateView, DeleteView, UpdateView, ListView
+from django.views.generic import (CreateView,
+                                  DeleteView,
+                                  UpdateView,
+                                  ListView)
 from django.utils.translation import gettext as _
 from task_manager.users.forms import UserForm
-from task_manager.utils import AppLoginMixin
+from task_manager.mixins import UserPassMixin
 
 
 class Users(ListView):
@@ -21,7 +24,7 @@ class CreateUser(CreateView, SuccessMessageMixin):
     extra_context = {'title': _('Sign Up'), 'button': _('Register')}
 
 
-class UpdateUser(AppLoginMixin, UpdateView, SuccessMessageMixin):
+class UpdateUser(UserPassMixin, UpdateView, SuccessMessageMixin):
     template_name = 'edit.html'
     success_url = reverse_lazy('user_list')
     form_class = UserForm
@@ -30,7 +33,7 @@ class UpdateUser(AppLoginMixin, UpdateView, SuccessMessageMixin):
     extra_context = {'title': _('Update user'), 'button': _('Update')}
 
 
-class DeleteUser(AppLoginMixin, SuccessMessageMixin, DeleteView, ):
+class DeleteUser(UserPassMixin, SuccessMessageMixin, DeleteView):
     template_name = 'delete.html'
     model = User
     success_url = reverse_lazy('user_list')

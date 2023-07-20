@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from task_manager.labels.models import LabelModel
 import django_filters
-from task_manager.utils import UserChoiceFieldMixin, UserFiletFieldMixin
+from task_manager.mixins import UserChoiceFieldMixin, UserFiletFieldMixin
 
 
 class TasksForm(forms.ModelForm):

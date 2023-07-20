@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
 from django_filters.views import FilterView
-from task_manager.utils import AppLoginMixin
+from task_manager.mixins import AppLoginMixin
 from task_manager.tasks.forms import TasksForm
 from task_manager.tasks.models import TasksModel
 from django.utils.translation import gettext as _
