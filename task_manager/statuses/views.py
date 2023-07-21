@@ -21,7 +21,7 @@ class CreateStatusesView(AppLoginMixin, CreateView):
     form_class = StatusForm
     model = StatusModel
     success_url = reverse_lazy('status_list')
-    success_message = _("Status create successfully")
+    success_message = _('Status create successfully')
     extra_context = {'title': _('Create status'), 'button': _('Create')}
 
 

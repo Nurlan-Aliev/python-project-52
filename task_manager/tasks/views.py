@@ -7,7 +7,10 @@ from task_manager.tasks.forms import TasksForm
 from task_manager.tasks.models import TasksModel
 from django.utils.translation import gettext as _
 from task_manager.tasks.forms import FilterForm
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
+from django.views.generic import (ListView,
+                                  CreateView,
+                                  UpdateView,
+                                  DeleteView)
 
 
 class TaskListView(AppLoginMixin, FilterView, ListView):

@@ -18,8 +18,10 @@ class UserPassMixin(UserPassesTestMixin):
 
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
-            messages.error(self.request, _("You have no right to edit the user."))
+            messages.error(self.request,
+                           _("You have no right to edit the user."))
             return redirect(reverse_lazy('user_list'))
+        return redirect(reverse_lazy('login'))
 
 
 class AppLoginMixin(LoginRequiredMixin, SuccessMessageMixin):
@@ -38,5 +40,3 @@ class UserFiletFieldMixin(django_filters.ModelChoiceFilter):
         super().__init__(*args, **kwargs)
         self.field.label_from_instance =\
             lambda obj: f"{obj.first_name} {obj.last_name}"
-
-

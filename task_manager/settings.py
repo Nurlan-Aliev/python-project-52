@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+
+from django.contrib import messages
 from dotenv import load_dotenv
 import dj_database_url
 from django.urls import reverse_lazy
@@ -144,6 +146,14 @@ USE_TZ = True
 
 LOGIN_URL = reverse_lazy('login')
 
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'alert-danger',
+}
 
 
 # Default primary key field type

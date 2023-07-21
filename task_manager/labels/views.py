@@ -9,6 +9,7 @@ from django.views.generic import (ListView,
                                   CreateView,
                                   UpdateView,
                                   DeleteView)
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class LabelView(AppLoginMixin, ListView):
@@ -20,17 +21,17 @@ class CreateLabel(AppLoginMixin, CreateView):
     template_name = 'edit.html'
     form_class = LabelForms
     model = LabelModel
-    success_message = 'Label create successfully'
+    success_message = _('Label create successfully')
     success_url = reverse_lazy('label_list')
     extra_context = {'title': _('Create label'), 'button': _('Create')}
 
 
-class UpdateLabel(AppLoginMixin, UpdateView):
+class UpdateLabel(AppLoginMixin, SuccessMessageMixin, UpdateView):
     template_name = 'edit.html'
     model = LabelModel
     form_class = LabelForms
     success_url = reverse_lazy('label_list')
-    success_message = _('Label deleted successfully')
+    success_message = _('Label update successfully')
     extra_context = {'title': _('Update label'), 'button': _('Update')}
 
 

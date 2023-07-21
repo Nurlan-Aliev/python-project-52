@@ -1,4 +1,7 @@
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
+
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.views.generic import (CreateView,
@@ -8,6 +11,7 @@ from django.views.generic import (CreateView,
 from django.utils.translation import gettext as _
 from task_manager.users.forms import UserForm
 from task_manager.mixins import UserPassMixin
+from django.db.models import ProtectedError
 
 
 class Users(ListView):
@@ -15,7 +19,7 @@ class Users(ListView):
     model = User
 
 
-class CreateUser(CreateView, SuccessMessageMixin):
+class CreateUser(SuccessMessageMixin, CreateView):
     form_class = UserForm
     template_name = 'edit.html'
     model = User
@@ -24,7 +28,7 @@ class CreateUser(CreateView, SuccessMessageMixin):
     extra_context = {'title': _('Sign Up'), 'button': _('Register')}
 
 
-class UpdateUser(UserPassMixin, UpdateView, SuccessMessageMixin):
+class UpdateUser(UserPassMixin, SuccessMessageMixin, UpdateView):
     template_name = 'edit.html'
     success_url = reverse_lazy('user_list')
     form_class = UserForm
@@ -33,9 +37,19 @@ class UpdateUser(UserPassMixin, UpdateView, SuccessMessageMixin):
     extra_context = {'title': _('Update user'), 'button': _('Update')}
 
 
-class DeleteUser(UserPassMixin, DeleteView, SuccessMessageMixin):
+class DeleteUser(UserPassMixin, DeleteView):
     template_name = 'delete.html'
     model = User
     success_url = reverse_lazy('user_list')
     success_message = _("User deleted successfully")
     extra_context = {'title': _('Delete user')}
+
+    def post(self, request, *args, **kwargs):
+        try:
+            self.delete(request, *args, **kwargs)
+            messages.success(self.request, _("User was deleted successfully"))
+        except ProtectedError:
+            messages.add_message(
+                request, messages.ERROR,
+                _("Can't delete the user because it's used for the task"))
+        return redirect(reverse_lazy('user_list'))
