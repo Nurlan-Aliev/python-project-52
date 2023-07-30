@@ -11,8 +11,8 @@
     </div>
     <div class="card-body bg-light">
         <p>
-            {% if task.description %}
-                {{ task.description }}
+            {% if object.description %}
+                {{ object.description }}
             {%  endif %}
         </p>
         <hr>
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col">
-                    {{ task.author.first_name }} {{ task.author.last_name }}
+                    {{ object.author.first_name }} {{ object.author.last_name }}
                 </div>
             </div>
 
@@ -36,8 +36,8 @@
                 </div>
 
                 <div class="col">
-                    {% if task.executor %}
-                        {{ task.executor.first_name }} {{ task.executor.last_name }}
+                    {% if object.executor %}
+                        {{ object.executor.first_name }} {{ object.executor.last_name }}
                     {%  endif %}
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="col">
-                    {{ task.status }}
+                    {{ object.status }}
                 </div>
             </div>
 
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="col">
-                    {{ task.timestamp }}
+                    {{ object.timestamp }}
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
                 <div class="col">
                     <h6>{% trans "label" %}</h6>
                     <ul>
-                        {% for label in labels %}
+                        {% for label in object.labels.all %}
                         <li>{{ label }}</li>
                         {% endfor %}
                     </ul>
@@ -78,9 +78,9 @@
             </div>
 
             <div>
-                <a href="{% url 'update_task' pk=task.id %}">{% trans "Update" %}</a>
+                <a href="{% url 'update_task' pk=object.id %}">{% trans "Update" %}</a>
                 <br>
-                <a href="{% url 'delete_task' pk=task.id %}">{% trans "Delete" %}</a>
+                <a href="{% url 'delete_task' pk=object.id %}">{% trans "Delete" %}</a>
             </div>
         </div>
     </div>

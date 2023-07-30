@@ -1,6 +1,4 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views import View
 from django_filters.views import FilterView
 from task_manager.mixins import AppLoginMixin
 from task_manager.tasks.forms import TasksForm
@@ -10,7 +8,8 @@ from task_manager.tasks.forms import FilterForm
 from django.views.generic import (ListView,
                                   CreateView,
                                   UpdateView,
-                                  DeleteView)
+                                  DeleteView,
+                                  DetailView)
 
 
 class TaskListView(AppLoginMixin, FilterView, ListView):
@@ -51,12 +50,6 @@ class DeleteTaskView(AppLoginMixin, DeleteView):
     extra_context = {'title': _('Delete task')}
 
 
-class TaskView(AppLoginMixin, View):
+class TaskView(AppLoginMixin, DetailView):
     template_name = 'tasks/task_view.html'
-
-    def get(self, request, *args, **kwargs):
-        task_id = kwargs.get('pk')
-        task = TasksModel.objects.get(id=task_id)
-        labels = task.labels.all()
-        return render(request, self.template_name,
-                      {'task': task, 'labels': labels})
+    model = TasksModel
