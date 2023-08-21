@@ -5,14 +5,13 @@ from task_manager.tasks.forms import TasksForm
 from task_manager.tasks.models import TasksModel
 from django.utils.translation import gettext as _
 from task_manager.tasks.forms import FilterForm
-from django.views.generic import (ListView,
-                                  CreateView,
+from django.views.generic import (CreateView,
                                   UpdateView,
                                   DeleteView,
                                   DetailView)
 
 
-class TaskListView(AppLoginMixin, FilterView, ListView):
+class TaskListView(AppLoginMixin, FilterView):
     template_name = 'tasks/tasks.html'
     model = TasksModel
     filterset_class = FilterForm

@@ -36,7 +36,7 @@ DEBUG = 'DEBUG' in os.environ
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'webserver',
-    'task-manager-o9zw.onrender.com',
+    os.getenv('LINK'),
 ]
 
 
