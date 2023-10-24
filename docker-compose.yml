@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  task-manager:
+    build: .
+    container_name: task-manager
+    command: python3 manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - /home/nurlan/hexlet:/python-project-52
+
+    depends_on:
+      - pgdb
+
+  pgdb:
+    image: postgres
+    environment:
+      - POSTGRES_DB=task_manager
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=ChangeMe
+    container_name: pgdb

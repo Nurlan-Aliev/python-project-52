@@ -43,6 +43,23 @@ It allows you to set tasks, assign performers and change their statuses. To work
    make start
    ```
 
+# Docker
+1. Clone this repo
+    ```bash
+    git clone https://github.com/Nurlan-Aliev/python-project-52.git  
+    ```
+
+2. Run for build image and create container
+    ```bash
+   docker-compose up
+   ```
+3. Run migrate in new window 
+    ```bash
+   docker-cmpose run task-manager make migrate
+   ```
+
+
+
 ## Build with
 
 * Python

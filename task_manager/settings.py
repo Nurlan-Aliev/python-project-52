@@ -35,6 +35,7 @@ DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    'localhost'
     'webserver',
     os.getenv('LINK'),
 ]
@@ -97,9 +98,9 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.sqlite3',  # Используйте SQLite или другой движок по умолчанию
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
 }
 
 if not DEBUG:
